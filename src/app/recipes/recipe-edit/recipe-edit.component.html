@@ -19,15 +19,15 @@
         <div class="col-md-12">
           <div class="form-group form-floating  mb-3">
             <input type="text" id="imagePath" class="form-control" formControlName="imagePath"
-              placeholder="Image URL...">
+              placeholder="Image URL..."
+              #imagePath>
             <label for="imagePath">Image URL</label>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12 mb-3">
-          <label for="imgView">View image:</label>
-          <img src="" class="img-responsive" id="imgView">
+          <img [src]="imagePath.value" class="img-responsive" id="imgView">
         </div>
       </div>
       <div class="row">
