@@ -10,7 +10,7 @@ import { Params, ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./recipe-edit.component.css']
 })
 export class RecipeEditComponent implements OnInit {
-  id: number;
+  id: string;
   editMode = false;
   recipeForm: FormGroup;
 
@@ -22,8 +22,10 @@ export class RecipeEditComponent implements OnInit {
     this.route.params
       .subscribe(
         (params: Params) => {
-          this.id = +params['id'];
           this.editMode = params['id'] != null;
+          if (this.editMode){
+            this.id = params['id'];
+          }
           this.initForm();
         }
       );
@@ -65,11 +67,13 @@ export class RecipeEditComponent implements OnInit {
   }
 
   initForm() {
-    let recipe = new Recipe(0, '', '', '', null);
+    let recipe = new Recipe(null, '', '', '', null, null);
     let ingredients = new FormArray([]);
 
     if (this.editMode) {
       recipe = this.recipeService.getRecipe(this.id);
+
+    console.log(recipe);
 
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {

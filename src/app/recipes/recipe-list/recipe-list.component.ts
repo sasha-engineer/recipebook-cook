@@ -9,22 +9,21 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent implements OnInit, OnDestroy {
-  recipes : Recipe[];
+  recipes: Recipe[];
   recipeChangedSubsctiption: Subscription;
 
-  constructor(private recipeService: RecipeService){ }
+  constructor(private recipeService: RecipeService) { }
 
   ngOnDestroy(): void {
     this.recipeChangedSubsctiption.unsubscribe();
   }
 
   ngOnInit(): void {
-    this.recipeChangedSubsctiption = this.recipeService.recipeChanged
-      .subscribe(
-        (recipes: Recipe[]) => {
-          this.recipes = recipes;
-        });
+    this.recipeChangedSubsctiption = this.recipeService.recipeChangedSubject
+      .subscribe((recipes: Recipe[]) => {
+        this.recipes = recipes;
+      });
 
-    this.recipes = this.recipeService.getRecipeList();
+    this.recipes = this.recipeService.getRecipes();
   }
 }

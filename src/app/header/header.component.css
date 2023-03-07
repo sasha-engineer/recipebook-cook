@@ -1,0 +1,10 @@
+.navbar-brand {
+  float: center;
+  text-align: center;
+  font-size: 24px;
+  color: #0a58ca;
+}
+
+.nav-link {
+  color: #24578e;
+}
