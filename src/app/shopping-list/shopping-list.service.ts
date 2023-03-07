@@ -14,30 +14,36 @@ export class ShoppingListService {
     return this.ingredients.slice();
   }
 
-  getIngredient(index: number){
+  getIngredient(index: number) {
     return this.ingredients[index];
   }
 
-  incrementIngredient(index: number){
+  incrementIngredient(index: number) {
     this.ingredients[index].amount++;
   }
 
-  addIngredient(ingredient: Ingredient){
+  decreaseIngredient(index: number) {
+    if (this.ingredients[index].amount > 0) {
+      this.ingredients[index].amount--;
+    }
+  }
+
+  addIngredient(ingredient: Ingredient) {
     this.ingredients.push(ingredient);
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
-  addIngredients(newIngredients: Ingredient[]){
+  addIngredients(newIngredients: Ingredient[]) {
     this.ingredients.push(...newIngredients);
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
-  updateIngredient(index: number, newIngredient: Ingredient){
+  updateIngredient(index: number, newIngredient: Ingredient) {
     this.ingredients[index] = newIngredient;
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
-  deleteIngredient(index: number){
+  deleteIngredient(index: number) {
     this.ingredients.splice(index, 1);
     this.ingredientChanged.next(this.ingredients.slice());
   }
