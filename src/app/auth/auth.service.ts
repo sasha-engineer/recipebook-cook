@@ -26,26 +26,10 @@ export class AuthService {
         returnSecureToken: true
       }
     )
-      .pipe(
-        map((res: any) => {
-          if (!res.response) {
-            throw new Error('Value expected!');
-          }
-          return res.response;
-        }),
-        catchError(errorResponse => {
-          let errorMessage = 'An unknown error occurred!';
-          if (!errorResponse.error || !errorResponse.error.error) {
-            throw new Error(errorMessage);
-          }
-
-          switch (errorResponse.error.error.message) {
-            case 'EMAIL_EXISTS':
-              errorMessage = 'This email exists already';
-          }
-          throw new Error(errorMessage);
-        })
-      );
+    .pipe(
+      map(this.mapError()),
+      catchError(this.catchHandleError())
+    );
   }
 
   login(email: string, password: string) {
@@ -56,25 +40,34 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }
-    ).pipe(
-      map((res: any) => {
-        if (!res.response) {
-          throw new Error('Value expected!');
-        }
-        return res.response;
-      }),
-      catchError(errorResponse => {
-        let errorMessage = 'An unknown error occurred!';
-        if (!errorResponse.error || !errorResponse.error.error) {
-          throw new Error(errorMessage);
-        }
+    )
+      .pipe(
+        map(this.mapError()),
+        catchError(this.catchHandleError())
+      );
+  }
 
-        switch (errorResponse.error.error.message) {
-          case 'EMAIL_EXISTS':
-            errorMessage = 'This email exists already';
-        }
+  private catchHandleError() {
+    return errorResponse => {
+      let errorMessage = 'An unknown error occurred!';
+      if (!errorResponse.error || !errorResponse.error.error) {
         throw new Error(errorMessage);
-      })
-    );
+      }
+
+      switch (errorResponse.error.error.message) {
+        case 'EMAIL_EXISTS':
+          errorMessage = 'This email exists already';
+      }
+      throw new Error(errorMessage);
+    };
+  }
+
+  private mapError(): (value: any, index: number) => any {
+    return (res: any) => {
+      if (!res.response) {
+        throw new Error('Value expected!');
+      }
+      return res.response;
+    };
   }
 }

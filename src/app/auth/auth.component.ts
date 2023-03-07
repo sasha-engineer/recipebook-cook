@@ -39,16 +39,13 @@ export class AuthComponent {
     }
 
     authObservable.subscribe({
-      next(responseData) {
+      next: (responseData) => {
         this.isLoading = false;
         console.log(responseData);
-        console.log('next');
       },
-      error(message) {
+      error: (message) => {
         this.isLoading = false;
-        console.log('error');
         this.errorMessage = message;
-        console.log('isLoading: ' + this.isLoading);
       }
     });
   }
