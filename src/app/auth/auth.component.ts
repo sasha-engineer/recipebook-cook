@@ -41,15 +41,15 @@ export class AuthComponent {
     }
 
     authObservable.subscribe({
-      next: (responseData) => {
-        this.isLoading = false;
-        console.log(responseData);
+      next: () => {
         this.router.navigate(['/recipes']);
       },
       error: (message) => {
         this.isLoading = false;
         this.errorMessage = message;
-        console.log(message);
+      },
+      complete() {
+        this.isLoading = false;
       }
     });
   }

@@ -1,3 +1,4 @@
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -59,6 +60,11 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading.spinne
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoggingInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
       multi: true
     }],
   bootstrap: [AppComponent]
