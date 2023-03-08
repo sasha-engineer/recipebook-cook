@@ -1,21 +1,26 @@
-<div class="row">
-  <div class="col-7">
-    <h3 class="header-title">Ingredients</h3>
-  </div>
-</div>
-<div class="row">
-  <div class="col-7">
-    <app-shopping-edit></app-shopping-edit>
-    <hr class="col-7">
-    <div class="row">
-      <div class="col-7">
-        <div class="input-group" *ngFor="let ingredient of ingredients; let i = index">
-          <label class="input-group-text form-control" style="cursor: pointer" for="inputGroupFile01"
-            (click)="onEditItem(i)">{{ ingredient.name}} ({{ ingredient.amount }})</label>
-          <button class="btn btn-outline-success" type="button" (click)="onPlusItem(i)">+</button>
-          <button class="btn btn-outline-danger" type="button" (click)="onMinusItem(i)">-</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-7">
+          <h3 class="header-title">Ingredients</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <app-shopping-edit></app-shopping-edit>
+          <hr class="col-7">
+          <div class="row">
+            <div class="col-7">
+              <div class="input-group" *ngFor="let ingredient of ingredients; let i = index">
+                <label class="input-group-text form-control" style="cursor: pointer" for="inputGroupFile01"
+                  (click)="onEditItem(i)">{{ ingredient.name}} ({{ ingredient.amount }})</label>
+                <button class="btn btn-outline-success" type="button" (click)="onPlusItem(i)">+</button>
+                <button class="btn btn-outline-danger" type="button" (click)="onMinusItem(i)">-</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

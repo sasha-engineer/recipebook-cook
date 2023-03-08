@@ -10,9 +10,10 @@ import { RecipesComponent } from './recipes/recipes.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import { RecipesResolverService } from './recipes/recipes-resolver.service';
+import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/recipes', pathMatch: 'full' },
+  { path: '', component: HomeComponent},
   {
     path: 'recipes', component: RecipesComponent, resolve: [RecipesResolverService],
     children: [
