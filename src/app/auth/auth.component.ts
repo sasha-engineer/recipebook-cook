@@ -36,7 +36,6 @@ export class AuthComponent {
       authObservable = this.authService.login(email, password);
     } else {
       authObservable = this.authService.signup(email, password);
-
       form.reset();
     }
 

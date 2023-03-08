@@ -14,27 +14,6 @@ export class RecipeService {
     this.recipeChangedSubject.next(this.recipes.slice());
   }
 
-  /* recipes: Recipe[] = [
-      new Recipe(
-        Guid.parse('706fcfcb-8692-4475-8fe1-21c7cd887be2'),
-        'A test recipe',
-        'This is a simple test',
-        'https://cdn.iconscout.com/icon/free/png-512/coffee-1199-1182164.png',
-        [
-          new Ingredient('Meet', 1),
-          new Ingredient('French Fries', 10)
-        ]),
-      new Recipe(
-        Guid.parse('bb39c315-7589-4f28-b420-5e9e4e044248'),
-        'Another test recipe',
-        'This is a simple test',
-        'https://cdn.iconscout.com/icon/free/png-512/coffee-1199-1182164.png',
-        [
-          new Ingredient('Meet', 1),
-          new Ingredient('Tomato', 5)
-        ])
-    ]; */
-
   getRecipes(): Recipe[] {
     return this.recipes.slice();
   }

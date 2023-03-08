@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user.model';
-import { UserStorage } from './userStorage.model';
+import { UserStorage } from './user-storage.model';
 
 const SIGN_UP_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBwlW7n51eUs5GOaH7tVYNJx8HUGcDklIQ';
 const LOG_IN_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBwlW7n51eUs5GOaH7tVYNJx8HUGcDklIQ';
@@ -87,9 +87,7 @@ export class AuthService {
   }
 
   autoLogoout(expirationDuration: number) {
-    this.tokenExpirationTimer = setTimeout(() => {
-      this.logout();
-    }, expirationDuration);
+    this.tokenExpirationTimer = setTimeout(() => this.logout(), expirationDuration);
   }
 
   private catchHandleError() {
@@ -102,7 +100,7 @@ export class AuthService {
 
       switch (errorResponse.error.error.message) {
         case 'EMAIL_EXISTS':
-          errorMessage = 'This email exists already';
+          errorMessage = 'This email already exists';
       }
       throw new Error(errorMessage);
     };
@@ -127,6 +125,6 @@ export class AuthService {
     this.userSubject.next(user);
     this.autoLogoout(+data.expiresIn * 1000);
 
-    localStorage.setItem('shoppingUserData', JSON.stringify(user));
+    localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(user));
   }
 }

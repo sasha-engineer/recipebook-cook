@@ -26,6 +26,7 @@ import { RecipesResolverService } from './recipes/recipes-resolver.service';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth/auth.service';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading.spinner.component';
+import { ShoppingListResolverService } from './shopping-list/shopping-list-resolver.service';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading.spinne
     RecipeService,
     DataStorageService,
     RecipesResolverService,
+    ShoppingListResolverService,
     AuthService,
     {
       provide: HTTP_INTERCEPTORS,
