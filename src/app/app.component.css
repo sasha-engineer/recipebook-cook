@@ -1,0 +1,103 @@
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 800;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif
+}
+
+.section-heading {
+  font-size: 36px;
+  font-weight: 700;
+  margin-top: 60px
+}
+
+header.masthead {
+  margin-bottom: 50px;
+  background: no-repeat center center;
+  background-color: #868e96;
+  background-attachment: scroll;
+  position: relative;
+  background-size: cover
+}
+
+header.masthead .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / 8%);
+  opacity: .5
+}
+
+header.masthead .site-heading {
+  padding: 200px 0 150px;
+  color: #faaa42;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .site-heading {
+      padding:200px 0
+  }
+}
+
+header.masthead .site-heading {
+  text-align: right;
+}
+
+header.masthead .site-heading h1 {
+  font-size: 54px;
+  margin-top: 0;
+  text-align: left;
+}
+
+header.masthead .site-heading .subheading {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.1;
+  display: block;
+  margin: 10px 0 0;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .site-heading h1 {
+      font-size:50px
+  }
+}
+
+header.masthead .subheading {
+  line-height: 1.1;
+  display: block;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 10px 0 30px;
+  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  header.masthead .subheading {
+      font-size: 30px
+  }
+}
+
+.single-title.post-title.is-big-title {
+  position: absolute;
+  top: min(12vw,31vh);
+  right: 7%;
+  z-index: 999;
+  width: 35%;
+}
+
+.single .post-title.single-title {
+  font-size: 32px;
+}
+
+.entry-title {
+  font-size: 3vw!important;
+  font-family: 'Domine',serif;
+  font-weight: bolder!important;
+  line-height: 1.1!important;
+  display: block!important;
+  margin-bottom: min(2vw,3vh)!important;
+  color: #003e47;
+}
