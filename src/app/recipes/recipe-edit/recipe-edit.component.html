@@ -3,8 +3,8 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="col-md-12">
         <div class="form-group mb-3">
-          <button type="submit" class="btn btn-success" [disabled]="!recipeForm.valid">Save</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!recipeForm.valid">Add to the Book</button>
+          <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
         </div>
       </div>
       <div class="row">
@@ -26,14 +26,15 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 mb-3">
+        <div class="col-md-12 mb-3 text-center">
           <img [src]="imagePath.value" class="img-responsive" id="imgView">
+          <p class="text-center" *ngIf="!imagePath.value">Image Preview</p>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="form-floating form-group mb-3">
-            <textarea type="text" id="description" class="form-control" rows="6" formControlName="description"
+            <textarea type="text" id="description" class="form-control" style="height: 100px" rows="6" formControlName="description"
               placeholder="description"></textarea>
             <label for="description">Description</label>
           </div>
