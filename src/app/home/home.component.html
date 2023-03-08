@@ -2,14 +2,36 @@
   <div class="row">
     <div class="col-md-12">
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" style="cursor: pointer" *ngFor="let dish of topDishes">
-          <div class="card rounded h-70">
+        <div class="col" *ngFor="let dish of topDishes">
+          <div class="card rounded h-70" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+            (click)="onSelectDish(dish)">
             <img [src]="dish.path" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title text-center">{{dish.title}}</h5>
+              <div class="card-title text-center">{{dish.title}}
+                <img src="../assets/UA-Ukraine-Flag-icon.png" class="right" style="width: max-content;">
+              </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Dialog -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{selectedDish.title}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+          (click)="onCloseModal()"></button>
+      </div>
+      <div class="modal-body">
+        <div><img [src]="selectedDish.path" class="center"></div>
+        <label>Приготування:</label>
+        <p>{{selectedDish.description}}</p>
       </div>
     </div>
   </div>
