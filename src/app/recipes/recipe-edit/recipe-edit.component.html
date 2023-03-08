@@ -3,7 +3,7 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="col-md-12">
         <div class="form-group mb-3">
-          <button type="submit" class="btn btn-outline-success" [disabled]="!recipeForm.valid">Add to the Book</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!recipeForm.valid">{{editMode ? 'Update' : 'Add to the Book'}}</button>
           <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
         </div>
       </div>
