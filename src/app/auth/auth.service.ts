@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -6,8 +7,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { User } from './user.model';
 import { UserStorage } from './user-storage.model';
 
-const SIGN_UP_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBwlW7n51eUs5GOaH7tVYNJx8HUGcDklIQ';
-const LOG_IN_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBwlW7n51eUs5GOaH7tVYNJx8HUGcDklIQ';
+const SIGN_UP_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+environment.firebaseAPIKey;
+const LOG_IN_ENDPOINT = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key='+environment.firebaseAPIKey;
 const LOCAL_STORAGE_USER = 'shoppingUserData';
 
 export interface AuthResponseData {

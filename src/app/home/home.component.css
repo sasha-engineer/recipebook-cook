@@ -8,7 +8,6 @@
   border-color: rgb(169, 169, 170);
   box-shadow: 0 0 7px 1px rgb(169, 169, 170);
   transition: box-shadow .5s, border-color 1s;
-  margin-left: 5rem;
 }
 
 .card-title {
