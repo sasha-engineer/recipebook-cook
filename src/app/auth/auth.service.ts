@@ -19,7 +19,7 @@ export interface AuthResponseData {
   registered?: boolean;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   userSubject = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;

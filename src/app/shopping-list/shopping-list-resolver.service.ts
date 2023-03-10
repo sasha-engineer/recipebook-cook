@@ -10,7 +10,7 @@ import { DataStorageService } from '../shared/data-storage.service';
 import { Observable } from 'rxjs';
 import { ShoppingListService } from './shopping-list.service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ShoppingListResolverService implements Resolve<Ingredient[]> {
   constructor(
     private dataStorageService: DataStorageService,
