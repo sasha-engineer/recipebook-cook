@@ -6,7 +6,9 @@
     </button>
 
     <div class="collapse navbar-collapse d-lg-flex" id="lider-navbar-menu">
-      <a class="navbar-brand col-lg-3" routerLink="/">Recipe Book</a>
+      <a class="navbar-brand col-lg-3" routerLink="/">
+        Recipe Book<img src="./recipe-book.png" class="d-inline-block align-text-top">
+        </a>
       <ul class="navbar-nav col-lg-6">
         <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isAuthenticated">
           <a class="nav-link active" aria-current="page" routerLink="/recipes">Recipes</a>
