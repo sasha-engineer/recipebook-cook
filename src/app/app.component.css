@@ -85,11 +85,10 @@ header.masthead .subheading {
 }
 
 .single-title.post-title.is-big-title {
-  position: absolute;
   top: min(8vw,25vh);
   right: 7%;
   z-index: 999;
-  width: 35%;
+  text-align: -webkit-right;
 }
 
 .single .post-title.single-title {
