@@ -1,13 +1,15 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { Subscription } from "rxjs";
+import { pipe, Subscription } from "rxjs";
+import { Store } from '@ngrx/store';
 
-import { AuthService } from './../auth/auth.service';
 import { Ingredient } from './ingredient.model';
 import { RecipeService } from './../recipes/recipe.service';
 import { Recipe } from './../recipes/recipe.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
+
+import * as fromApp from '../store/app.reducer';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService implements OnDestroy {
@@ -18,17 +20,21 @@ export class DataStorageService implements OnDestroy {
     private httpClient: HttpClient,
     private recipeService: RecipeService,
     private shoppingListService: ShoppingListService,
-    private authService: AuthService) {
-    this.userAuthSubscription = this.authService.userSubject.subscribe(user => {
-      if (user) {
-        this.userId = user.id;
-      }
-    });
+    private store: Store<fromApp.AppState>
+  ) {
+    this.userAuthSubscription =
+      this.store
+        .select('auth')
+        .pipe(map(authState => authState.user))
+        .subscribe(user => {
+          if (user) {
+            this.userId = user.id;
+          }
+        });
   }
 
   ngOnDestroy(): void {
     this.userAuthSubscription.unsubscribe();
-    console.log('DataStorageService ngOnDestroy');
   }
 
   createRecipe(data: Recipe) {
