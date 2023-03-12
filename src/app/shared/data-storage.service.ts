@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
@@ -44,11 +45,11 @@ export class DataStorageService implements OnDestroy {
         data,
         { observe: 'response' }
       )
-      .subscribe(
-        responseData => {
-          console.log(responseData);
+      .subscribe(response => {
+        if (!environment.production) {
+          console.log(response);
         }
-      );
+      });
   }
 
   saveRecipes() {
@@ -59,7 +60,9 @@ export class DataStorageService implements OnDestroy {
         data
       )
       .subscribe(response => {
-        console.log(response);
+        if (!environment.production) {
+          console.log(response);
+        }
       });
   }
 
@@ -90,7 +93,9 @@ export class DataStorageService implements OnDestroy {
         data
       )
       .subscribe(response => {
-        console.log(response);
+        if (!environment.production) {
+          console.log(response);
+        }
       });
   }
 
