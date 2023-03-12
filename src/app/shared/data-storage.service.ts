@@ -1,22 +1,40 @@
+import { HttpClient } from "@angular/common/http";
+import { Injectable, OnDestroy } from '@angular/core';
+import { map, tap } from 'rxjs/operators';
+import { Subscription } from "rxjs";
+
+import { AuthService } from './../auth/auth.service';
 import { Ingredient } from './ingredient.model';
 import { RecipeService } from './../recipes/recipe.service';
 import { Recipe } from './../recipes/recipe.model';
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from '@angular/core';
-import { map, tap } from 'rxjs/operators';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Injectable({ providedIn: 'root' })
-export class DataStorageService {
+export class DataStorageService implements OnDestroy {
+  private userId: string = null;
+  private userAuthSubscription: Subscription;
+
   constructor(
     private httpClient: HttpClient,
     private recipeService: RecipeService,
-    private shoppingListService: ShoppingListService) { }
+    private shoppingListService: ShoppingListService,
+    private authService: AuthService) {
+    this.userAuthSubscription = this.authService.userSubject.subscribe(user => {
+      if (user) {
+        this.userId = user.id;
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.userAuthSubscription.unsubscribe();
+    console.log('DataStorageService ngOnDestroy');
+  }
 
   createRecipe(data: Recipe) {
     this.httpClient
       .post<{ name: string }>(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/recipes.json',
+        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
         data,
         { observe: 'response' }
       )
@@ -29,10 +47,9 @@ export class DataStorageService {
 
   saveRecipes() {
     const data = this.recipeService.getRecipes();
-
     this.httpClient
       .put(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/recipes.json',
+        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
         data
       )
       .subscribe(response => {
@@ -43,7 +60,7 @@ export class DataStorageService {
   getRecipes() {
     return this.httpClient
       .get<Recipe[]>(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/recipes.json'
+        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json'
       )
       .pipe(
         map(data => {
@@ -63,7 +80,7 @@ export class DataStorageService {
 
     this.httpClient
       .put(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/ingredients.json',
+        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json',
         data
       )
       .subscribe(response => {
@@ -74,7 +91,7 @@ export class DataStorageService {
   getIngredients() {
     return this.httpClient
       .get<Ingredient[]>(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/ingredients.json'
+        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json'
       )
       .pipe(
         tap(data => this.shoppingListService.setIngredients(data))

@@ -1,4 +1,4 @@
-<div class="card mb-3 item-card" >
+<div class="card mb-3 item-card" style="cursor: pointer;" routerLinkActive="active">
   <div class="row g-0">
     <div class="col-md-8">
       <div class="card-body">
@@ -6,7 +6,7 @@
         <p class="card-text">{{recipeItem.description}}</p>
       </div>
     </div>
-    <div class="col-md-4" style="cursor: pointer;" routerLinkActive="active">
+    <div class="col-md-4">
       <img [src]="recipeItem.imagePath" alt="{{recipeItem.name}}"
       class="bd-placeholder-img img-fluid rounded-end" width="100%" height="120">
     </div>
