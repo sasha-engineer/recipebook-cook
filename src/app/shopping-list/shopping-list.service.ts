@@ -11,6 +11,14 @@ export class ShoppingListService {
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
+  setDefaultIngredients() {
+    this.ingredients = [
+      { "amount": 7, "name": "Apple" },
+      { "amount": 10, "name": "Orange" }
+    ]
+    this.ingredientChanged.next(this.ingredients.slice());
+  }
+
   getIngredients(): Ingredient[] {
     return this.ingredients.slice();
   }

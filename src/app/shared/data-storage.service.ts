@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
-import { pipe, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { Store } from '@ngrx/store';
 
 import { Ingredient } from './ingredient.model';
