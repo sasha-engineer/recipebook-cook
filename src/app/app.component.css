@@ -33,13 +33,13 @@ header.masthead .overlay {
 }
 
 header.masthead .site-heading {
-  padding: 200px 0 150px;
+  padding: 100px 0 100px;
   color: #faaa42;
 }
 
 @media only screen and (min-width: 768px) {
   header.masthead .site-heading {
-      padding:200px 0
+      padding:100px 0
   }
 }
 
