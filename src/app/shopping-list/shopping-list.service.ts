@@ -1,21 +1,26 @@
 import { Subject } from 'rxjs';
 import { Ingredient } from "../shared/ingredient.model";
 
+const defaultIngredients: Ingredient[] = [
+  { "amount": 7, "name": "Apple" },
+  { "amount": 10, "name": "Orange" }
+];
+
 export class ShoppingListService {
   ingredientChanged = new Subject<Ingredient[]>();
   startedEditing = new Subject<number>();
-  private ingredients: Ingredient[] = [];
+  private ingredients: Ingredient[] = defaultIngredients.slice();
+  isDefaultIngredients: boolean = true;
 
   setIngredients(data: Ingredient[]): void {
+    this.isDefaultIngredients = false;
     this.ingredients = data;
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
   setDefaultIngredients() {
-    this.ingredients = [
-      { "amount": 7, "name": "Apple" },
-      { "amount": 10, "name": "Orange" }
-    ]
+    this.isDefaultIngredients = true;
+    this.ingredients = defaultIngredients.slice();
     this.ingredientChanged.next(this.ingredients.slice());
   }
 

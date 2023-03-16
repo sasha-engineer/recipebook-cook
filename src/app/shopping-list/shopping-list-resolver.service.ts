@@ -23,7 +23,7 @@ export class ShoppingListResolverService implements Resolve<Ingredient[]> {
     Promise<Ingredient[]> {
     const data = this.shoppingListService.getIngredients();
 
-    if (data.length === 0) {
+    if (this.shoppingListService.isDefaultIngredients) {
       return this.dataStorageService.getIngredients();
     } else {
       return data;

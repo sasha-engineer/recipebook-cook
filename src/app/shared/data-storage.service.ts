@@ -96,12 +96,17 @@ export class DataStorageService implements OnDestroy {
   }
 
   getIngredients() {
-    return this.httpClient
-      .get<Ingredient[]>(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json'
-      )
-      .pipe(
-        tap(data => this.shoppingListService.setIngredients(data))
-      );
+    if (this.userId) {
+      return this.httpClient
+        .get<Ingredient[]>(
+          'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json'
+        )
+        .pipe(
+          tap(data => this.shoppingListService.setIngredients(data))
+        );
+    }
+    else {
+      this.shoppingListService.setDefaultIngredients();
+    }
   }
 }

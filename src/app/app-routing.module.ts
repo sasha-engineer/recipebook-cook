@@ -1,4 +1,3 @@
-import { ShoppingListResolverService } from './shopping-list/shopping-list-resolver.service';
 import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';

@@ -11,8 +11,14 @@ import { ShoppingListResolverService } from './shopping-list-resolver.service';
   declarations: [ShoppingListComponent, ShoppingEditComponent],
   imports: [
     FormsModule,
-    RouterModule.forChild([{ path: '', component: ShoppingListComponent, resolve: [ShoppingListResolverService] }]),
+    RouterModule.forChild([
+      {
+        path: '',
+        component: ShoppingListComponent,
+        resolve: [ShoppingListResolverService]
+      }
+    ]),
     SharedModule
   ]
 })
-export class ShoppingListModule {}
+export class ShoppingListModule { }

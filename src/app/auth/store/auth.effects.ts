@@ -25,20 +25,29 @@ export interface AuthResponseData {
   registered?: boolean;
 }
 
-const mapResponseData = (data: AuthResponseData) => {
+const mapAuthResponse = (data: AuthResponseData) => {
   const expirationDate = new Date(new Date().getTime() + +data.expiresIn * 1000);
-  return new UserStorage(data.email, data.localId, data.idToken, expirationDate);
+  return new UserStorage(
+    data.email,
+    data.localId,
+    data.idToken,
+    expirationDate
+  );
+}
+
+const mapToAuthUser = (data: UserStorage, redirect: boolean = false) => {
+  return new AuthUser(
+    data.email,
+    data.userId,
+    data.token,
+    data.expirationDate,
+    redirect
+  );
 }
 
 const handleAuthentication = (user: UserStorage) => {
-  /* const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
-  const user = new UserStorage(email, userId, token, expirationDate); */
-  console.log(user);
   localStorage.setItem(LOCAL_STORAGE_USER, JSON.stringify(user));
-
-  return new AuthActions.AuthenticateSuccess(
-    new AuthUser(user.email, user.userId, user.token, user.expirationDate, true)
-  );
+  return new AuthActions.AuthenticateSuccess(mapToAuthUser(user, true));
 };
 
 const handleError = (errorRes: any) => {
@@ -90,7 +99,7 @@ export class AuthEffects {
                 this.authService.setLogoutTimer(+resData.expiresIn * 1000);
               }),
               map(resData => {
-                const userStorage = mapResponseData(resData);
+                const userStorage = mapAuthResponse(resData);
                 return handleAuthentication(userStorage);
               }),
               catchError(errorRes => handleError(errorRes))
@@ -116,7 +125,7 @@ export class AuthEffects {
               this.authService.setLogoutTimer(+resData.expiresIn * 1000);
             }),
             map(resData => {
-              const userStorage = mapResponseData(resData);
+              const userStorage = mapAuthResponse(resData);
               return handleAuthentication(userStorage);
             }),
             catchError(errorRes => handleError(errorRes))
@@ -143,36 +152,19 @@ export class AuthEffects {
         ofType(AuthActions.AUTO_LOGIN),
         map(() => {
           const userData: UserStorage = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER));
-          console.log('userData');
-          console.log(userData);
 
           if (!userData) {
             return { type: 'DUMMY' };
           }
 
-          const loadedUser = new UserStorage(
-            userData.email,
-            userData.userId,
-            userData.token,
-            new Date(userData.expirationDate)
-          );
-
-          if (loadedUser.token) {
+          if (userData.token) {
             const expirationDuration =
-              loadedUser.expirationDate.getTime() -
+            new Date(userData.expirationDate).getTime() -
               new Date().getTime();
 
             this.authService.setLogoutTimer(expirationDuration);
 
-            return new AuthActions.AuthenticateSuccess(
-              new AuthUser(
-                loadedUser.email,
-                loadedUser.userId,
-                loadedUser.token,
-                loadedUser.expirationDate,
-                false
-              )
-            );
+            return new AuthActions.AuthenticateSuccess(mapToAuthUser(userData));
           }
           return { type: 'DUMMY' };
         })

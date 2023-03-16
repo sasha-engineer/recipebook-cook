@@ -20,9 +20,9 @@ import * as fromApp from '../store/app.reducer';
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'translateX(-400px)'
+          transform: 'translateX(-100px)'
         }),
-        animate(1000)
+        animate(500)
       ]),
       transition('* => void', [
         animate(500, style({
@@ -45,16 +45,18 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.getIngredients();
-    this.ingredientSubscription = this.shoppingListService
-      .ingredientChanged
-      .subscribe(data => this.ingredients = data);
+
+    this.ingredientSubscription =
+      this.shoppingListService
+        .ingredientChanged
+        .subscribe(data => this.ingredients = data);
 
     this.userAuthSubscription =
       this.store
         .select('auth')
         .subscribe(authState => {
           if (!authState.user) {
-            this.ingredients = [];
+            this.shoppingListService.setDefaultIngredients();
           }
         });
   }
