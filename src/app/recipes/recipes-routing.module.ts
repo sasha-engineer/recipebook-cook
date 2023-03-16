@@ -13,13 +13,13 @@ const appRoutes: Routes = [
   {
     path: '',
     component: RecipesComponent,
-    resolve: [RecipesResolverService],
+    resolve: [RecipesResolverService, ShoppingListResolverService],
     canActivate: [AuthGuard],
     children: [
       { path: '', component: RecipeStartComponent },
       { path: 'new', component: RecipeEditComponent },
-      { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService] },
-      { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService] }
+      { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService, ShoppingListResolverService] },
+      { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService, ShoppingListResolverService] }
     ]
   }
 ];

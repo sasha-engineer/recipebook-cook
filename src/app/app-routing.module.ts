@@ -6,7 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, resolve: [ShoppingListResolverService] },
+  { path: '', component: HomeComponent },
   {
     path: 'recipes',
     loadChildren: () => import("./recipes/recipes.module").then(m => m.RecipesModule)
