@@ -38,7 +38,7 @@ export class ShoppingListService {
   }
 
   addIngredient(ingredient: Ingredient) {
-    this.ingredients.push(ingredient);
+    this.ingredients.unshift(ingredient);
     this.ingredientChanged.next(this.ingredients.slice());
   }
 
