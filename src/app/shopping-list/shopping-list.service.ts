@@ -14,7 +14,7 @@ export class ShoppingListService {
 
   setIngredients(data: Ingredient[]): void {
     this.isDefaultIngredients = false;
-    this.ingredients = data;
+    this.ingredients = data ?? defaultIngredients.slice();
     this.ingredientChanged.next(this.ingredients.slice());
   }
 

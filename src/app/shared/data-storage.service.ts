@@ -69,12 +69,14 @@ export class DataStorageService implements OnDestroy {
       )
       .pipe(
         map(data => {
-          return data.map(recipe => {
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
-          });
+          if (data) {
+            return data.map(recipe => {
+              return {
+                ...recipe,
+                ingredients: recipe.ingredients ? recipe.ingredients : []
+              };
+            });
+          }
         }),
         tap(data => this.recipeService.setRecipes(data))
       );

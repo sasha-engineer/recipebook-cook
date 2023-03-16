@@ -3,6 +3,23 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Recipe } from "./recipe.model";
 
+const defaultRecipes: Recipe[] = [{
+  "description": "Awesome a cup of coffee",
+  "id": "1328b4da-daa4-ec23-b68b-6b61b61ff34a",
+  "imagePath": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYedm3AvOnORRAo1HMVbJQaSJ_FGtN4Gh0ZQ&usqp=CAU",
+  "ingredients": [
+    {
+      "amount": 2,
+      "name": "Milk"
+    },
+    {
+      "amount": 20,
+      "name": "Coffee grains"
+    }
+  ],
+  "name": "Coffee"
+}];
+
 @Injectable()
 export class RecipeService {
   recipeChangedSubject = new Subject<Recipe[]>();
@@ -10,7 +27,7 @@ export class RecipeService {
   private recipes: Recipe[] = [];
 
   setRecipes(data: Recipe[]): void {
-    this.recipes = data;
+    this.recipes = data ?? defaultRecipes;
     this.recipeChangedSubject.next(this.recipes.slice());
   }
 
