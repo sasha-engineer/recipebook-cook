@@ -15,9 +15,9 @@ import { Dish } from './dish.model';
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'translateZ(-300px)'
+          transform: 'translateZ(-400px)'
         }),
-        animate(1100)
+        animate(1200)
       ])
     ]),
   ]
