@@ -27,11 +27,7 @@ export class DataStorageService implements OnDestroy {
       this.store
         .select('auth')
         .pipe(map(authState => authState.user))
-        .subscribe(user => {
-          if (user) {
-            this.userId = user.id;
-          }
-        });
+        .subscribe(user => this.userId = user ? user.userId : null);
   }
 
   ngOnDestroy(): void {

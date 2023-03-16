@@ -1,8 +1,10 @@
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthResponseData, AuthService } from './auth.service';
+import { Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from './store/auth.actions';
 
 @Component({
   selector: 'app-auth',
@@ -13,9 +15,24 @@ export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
   errorMessage: string = null;
+  storeSubscription: Subscription;
 
-  constructor(private authService: AuthService,
-    private router: Router) { }
+  constructor(private store: Store<fromApp.AppState>) { }
+
+  ngOnInit() {
+    this.storeSubscription = this.store.select('auth').subscribe(authState => {
+      this.isLoading = authState.loading;
+      this.errorMessage = authState.authError;
+      if (this.errorMessage) {
+        this.showErrorAlert(this.errorMessage);
+      }
+    });
+  }
+
+  showErrorAlert(errorMessage: string) {
+    console.log(errorMessage);
+    // Todo: add alert
+  }
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -26,30 +43,21 @@ export class AuthComponent {
       return;
     }
 
-    this.isLoading = true;
     const email = form.value.email;
     const password = form.value.password;
 
-    let authObservable: Observable<AuthResponseData>;
-
     if (this.isLoginMode) {
-      authObservable = this.authService.login(email, password);
+      this.store.dispatch(
+        new AuthActions.LoginStart({ email: email, password: password })
+      );
     } else {
-      authObservable = this.authService.signup(email, password);
-      form.reset();
+      this.store.dispatch(
+        new AuthActions.SignupStart({ email: email, password: password })
+      );
     }
+  }
 
-    authObservable.subscribe({
-      next: () => {
-        this.router.navigate(['/recipes']);
-      },
-      error: (message) => {
-        this.isLoading = false;
-        this.errorMessage = message;
-      },
-      complete() {
-        this.isLoading = false;
-      }
-    });
+  onHandleError() {
+    this.store.dispatch(new AuthActions.ClearError());
   }
 }

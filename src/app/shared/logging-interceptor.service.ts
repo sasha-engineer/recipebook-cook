@@ -2,26 +2,36 @@ import {
   HttpInterceptor,
   HttpRequest,
   HttpHandler,
-  HttpEventType
+  HttpParams
 } from '@angular/common/http';
-import { tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { map, take, exhaustMap } from 'rxjs/operators';
+import * as fromApp from '../store/app.reducer';
 
+@Injectable()
 export class LoggingInterceptorService implements HttpInterceptor {
+  constructor(private store: Store<fromApp.AppState>) { }
+
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     console.log('Outgoing request');
     console.log(request.url);
     console.log(request.headers);
 
-    return next
-      .handle(request)
-      .pipe(
-        tap(event => {
-          if (event.type === HttpEventType.Response) {
-            // log to storage
-            console.log('Incoming response');
-            console.log(event);
-          }
-        })
-      );
+    return this.store.select('auth').pipe(
+      take(1),
+      map(authState => {
+        return authState.user;
+      }),
+      exhaustMap(user => {
+        if (!user) {
+          return next.handle(request);
+        }
+
+        const modifiedReq = request
+          .clone({ params: new HttpParams().set('auth', user.token) });
+        return next.handle(modifiedReq);
+      })
+    );
   }
 }
