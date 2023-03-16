@@ -1,15 +1,37 @@
-import { ShoppingListService } from './shopping-list.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Ingredient } from '../shared/ingredient.model';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 
+import { ShoppingListService } from './shopping-list.service';
+import { Ingredient } from '../shared/ingredient.model';
 import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: 'app-shopping-list',
   templateUrl: './shopping-list.component.html',
-  styleUrls: ['./shopping-list.component.css']
+  styleUrls: ['./shopping-list.component.css'],
+  animations: [
+    trigger('shoppingList', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateX(0)'
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateX(-400px)'
+        }),
+        animate(1000)
+      ]),
+      transition('* => void', [
+        animate(500, style({
+          transform: 'translateX(200px)',
+          opacity: 0
+        }))
+      ])
+    ]),
+  ]
 })
 export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];

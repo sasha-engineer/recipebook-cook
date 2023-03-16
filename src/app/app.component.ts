@@ -4,7 +4,6 @@ import { isPlatformBrowser } from '@angular/common';
 
 import * as fromApp from './store/app.reducer';
 import * as AuthActions from './auth/store/auth.actions';
-import { inject } from '@angular/core/testing';
 
 @Component({
   selector: 'app-root',

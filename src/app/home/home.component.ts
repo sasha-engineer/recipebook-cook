@@ -1,10 +1,26 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { Dish } from './dish.model';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('dishList', [
+      state('in', style({
+        opacity: 1,
+        transform: 'translateZ(0)'
+      })),
+      transition('void => *', [
+        style({
+          opacity: 0,
+          transform: 'translateZ(-300px)'
+        }),
+        animate(1100)
+      ])
+    ]),
+  ]
 })
 export class HomeComponent implements OnInit {
   topDishes: Dish[] = [

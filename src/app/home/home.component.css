@@ -8,10 +8,13 @@
   border-color: rgb(169, 169, 170);
   box-shadow: 0 0 7px 1px rgb(169, 169, 170);
   transition: box-shadow .5s, border-color 1s;
+
+  background-color: #1976d21a;
+  border-top: 0.5px solid #DBDBDB;
 }
 
 .card-title {
-  color: darkgray;
+  color: #1669bb;
   text-transform: uppercase;
   font-size: larger;
 }
