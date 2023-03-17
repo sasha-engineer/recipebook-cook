@@ -1,3 +1,4 @@
+import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RouterModule, Routes } from '@angular/router';
 
 import { ShoppingListResolverService } from './../shopping-list/shopping-list-resolver.service';
@@ -16,7 +17,7 @@ const appRoutes: Routes = [
     resolve: [RecipesResolverService, ShoppingListResolverService],
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: RecipeStartComponent },
+      { path: '', component: RecipeListComponent },
       { path: 'new', component: RecipeEditComponent },
       { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService, ShoppingListResolverService] },
       { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService, ShoppingListResolverService] }

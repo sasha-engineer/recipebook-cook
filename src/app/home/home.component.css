@@ -11,6 +11,8 @@
 
   background-color: #1976d21a;
   border-top: 0.5px solid #DBDBDB;
+  margin: 1rem auto;
+  max-width: 21rem;
 }
 
 .card-title {

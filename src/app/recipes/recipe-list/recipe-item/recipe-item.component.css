@@ -1,4 +1,13 @@
-.item-card{
+.item-card {
   box-shadow: rgb(0 0 0 / 13%) 0px 1.6px 3.6px 0px, rgb(0 0 0 / 11%) 0px 0.3px 0.9px 0px;
-  margin: 5px;
+  margin: 0.3rem auto;
+  max-height: 25rem auto;
+}
+
+.item-img {
+  max-width: 10rem;
+}
+
+.card-body{
+  padding: 2px;
 }

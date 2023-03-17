@@ -97,4 +97,8 @@ export class RecipeEditComponent implements OnInit {
       'ingredients': ingredients
     });
   }
+
+  onBack(){
+    this.router.navigate(['/recipes']);
+  }
 }

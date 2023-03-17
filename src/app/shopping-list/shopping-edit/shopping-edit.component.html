@@ -1,27 +1,31 @@
-<form (ngSubmit)="onSubmittem(shoppingForm)" #shoppingForm="ngForm">
-  <div class="row justify-content-center">
-    <div class="col-8">
-      <div class="form-group form-floating ">
-      <input type="text" id="name" class="form-control" name="name" placeholder="Ingredient name" ngModel required >
-      <label for="name">Ingredient name</label>
+<div class="row justify-content-center align-items-center">
+  <div class="col-md-6">
+    <form (ngSubmit)="onSubmittem(shoppingForm)" #shoppingForm="ngForm">
+      <div class="row">
+      <div class="col-8">
+        <div class="form-group form-floating ">
+          <input type="text" id="name" class="form-control" name="name" placeholder="Ingredient name" ngModel required>
+          <label for="name">Ingredient name</label>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="form-group form-floating ">
+          <input type="number" id="amount" class="form-control" name="amount" placeholder="Amount" ngModel required
+            pattern="^[1-9]+[0-9]*$">
+          <label for="amount">Amount</label>
+        </div>
       </div>
     </div>
-    <div class="col-4">
-      <div class="form-group form-floating ">
-      <input type="number" id="amount" class="form-control" name="amount" placeholder="Amount" ngModel required pattern="^[1-9]+[0-9]*$">
-      <label for="amount">Amount</label>
+      <div class="row">
+        <div class="col-12">
+          <div class="btn-group" role="group">
+            <button class="btn btn-outline-success" type="submit" [disabled]="!shoppingForm.valid">
+              {{ editMode ? 'Update' : 'Add' }}</button>
+            <button class="btn btn-outline-danger" type="button" (click)="onDelete()" *ngIf="editMode">Delete</button>
+            <button class="btn btn-outline-primary" type="button" (click)="onClear()">Clear</button>
+          </div>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
-
-  <div class="row justify-content-center">
-    <div class="col-xs-8">
-      <div class="btn-group" role="group">
-        <button class="btn btn-outline-success" type="submit" [disabled]="!shoppingForm.valid">
-          {{ editMode ? 'Update' : 'Add' }}</button>
-        <button class="btn btn-outline-danger" type="button" (click)="onDelete()" *ngIf="editMode">Delete</button>
-        <button class="btn btn-outline-primary" type="button" (click)="onClear()">Clear</button>
-      </div>
-    </div>
-  </div>
-</form>
+</div>

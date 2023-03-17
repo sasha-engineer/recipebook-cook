@@ -1,29 +1,30 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-xs-6">
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
       <h3 class="header-title">Buy Ingredients</h3>
     </div>
   </div>
   <app-shopping-edit></app-shopping-edit>
-  <div class="row justify-content-center">
-    <div class="col-xs-6 btn-toolbar justify-content-between shopping-item"
-      [@shoppingList]
-      *ngFor="let ingredient of ingredients; let i = index">
-      <div class="input-group" style="cursor: pointer" (click)="onEditItem(i)">
-        <div class="d-flex align-items-center">
-          <div class="flex-shrink-0">
-            <img src="../assets/shopping-list/wishlist.png">
-          </div>
-          <div class="flex-grow-1 ms-3">
-            {{ ingredient.name}}
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="btn-toolbar justify-content-between shopping-item" [@shoppingList]
+        *ngFor="let ingredient of ingredients; let i = index">
+        <div class="input-group" style="cursor: pointer" (click)="onEditItem(i)">
+          <div class="d-flex align-items-center">
+            <div class="flex-shrink-0">
+              <img src="../assets/shopping-list/wishlist.png">
+            </div>
+            <div class="flex-grow-1 ms-3">
+              {{ ingredient.name}}
+            </div>
           </div>
         </div>
-      </div>
-      <div class="btn-group" role="group" aria-label="First group">
-        <button type="button" class="btn btn-outline-success" (click)="onMinusItem(i)">-</button>
-        <label class="input-group-text form-control" style="width: 48px; text-align: center;">{{ ingredient.amount
-          }}</label>
-        <button type="button" class="btn btn-success" (click)="onPlusItem(i)">+</button>
+        <div class="btn-group" role="group" aria-label="First group">
+          <button type="button" class="btn btn-outline-success" (click)="onMinusItem(i)">-</button>
+          <label class="input-group-text form-control" style="width: 48px; text-align: center;">{{ ingredient.amount
+            }}</label>
+          <button type="button" class="btn btn-success" (click)="onPlusItem(i)">+</button>
+        </div>
       </div>
     </div>
   </div>

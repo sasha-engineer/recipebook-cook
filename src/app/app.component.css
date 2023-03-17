@@ -2,9 +2,14 @@ app-root {
   background: #fafcfc;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 800;
-  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
 .section-heading {
@@ -39,7 +44,11 @@ header.masthead .site-heading {
 
 @media only screen and (min-width: 768px) {
   header.masthead .site-heading {
-      padding:100px 0
+    padding: 100px 0
+  }
+
+  header.masthead .site-heading h1 {
+    font-size: 50px
   }
 }
 
@@ -59,13 +68,7 @@ header.masthead .site-heading .subheading {
   line-height: 1.1;
   display: block;
   margin: 10px 0 0;
-  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif
-}
-
-@media only screen and (min-width: 768px) {
-  header.masthead .site-heading h1 {
-      font-size:50px
-  }
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif
 }
 
 header.masthead .subheading {
@@ -74,18 +77,18 @@ header.masthead .subheading {
   font-size: 24px;
   font-weight: 600;
   margin: 10px 0 30px;
-  font-family: 'Open Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: white;
 }
 
 @media only screen and (min-width: 768px) {
   header.masthead .subheading {
-      font-size: 30px
+    font-size: 30px
   }
 }
 
 .single-title.post-title.is-big-title {
-  top: min(8vw,25vh);
+  top: min(8vw, 25vh);
   right: 7%;
   z-index: 999;
   text-align: -webkit-right;
@@ -96,11 +99,11 @@ header.masthead .subheading {
 }
 
 .entry-title {
-  font-size: 3vw!important;
-  font-family: 'Domine',serif;
-  font-weight: bolder!important;
-  line-height: 1.1!important;
-  display: block!important;
-  margin-bottom: min(2vw,3vh)!important;
+  font-size: 3vw !important;
+  font-family: 'Domine', serif;
+  font-weight: bolder !important;
+  line-height: 1.1 !important;
+  display: block !important;
+  margin-bottom: min(2vw, 3vh) !important;
   color: #003e47;
 }
