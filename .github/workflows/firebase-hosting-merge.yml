@@ -17,4 +17,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_COMPLETE_GUIDE_4D2B9 }}'
           channelId: live
-          projectId: complete-guide-4d2b9
+          projectId: recipe-book-fb4dc

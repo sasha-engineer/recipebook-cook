@@ -37,7 +37,7 @@ export class DataStorageService implements OnDestroy {
   createRecipe(data: Recipe) {
     this.httpClient
       .post<{ name: string }>(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
+        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
         data,
         { observe: 'response' }
       )
@@ -52,7 +52,7 @@ export class DataStorageService implements OnDestroy {
     const data = this.recipeService.getRecipes();
     this.httpClient
       .put(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
+        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
         data
       )
       .subscribe(response => {
@@ -65,7 +65,7 @@ export class DataStorageService implements OnDestroy {
   getRecipes() {
     return this.httpClient
       .get<Recipe[]>(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json'
+        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json'
       )
       .pipe(
         map(data => {
@@ -87,7 +87,7 @@ export class DataStorageService implements OnDestroy {
 
     this.httpClient
       .put(
-        'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json',
+        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json',
         data
       )
       .subscribe(response => {
@@ -101,7 +101,7 @@ export class DataStorageService implements OnDestroy {
     if (this.userId) {
       return this.httpClient
         .get<Ingredient[]>(
-          'https://complete-guide-4d2b9-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json'
+          'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json'
         )
         .pipe(
           tap(data => this.shoppingListService.setIngredients(data))
