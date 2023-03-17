@@ -2,9 +2,7 @@
   <div class="row justify-content-center align-items-center">
     <div class="col-xs-8">
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col"
-        [@dishList]
-        *ngFor="let dish of topDishes">
+        <div class="col" [@dishList] *ngFor="let dish of topDishes">
           <div class="card rounded w-70" style="cursor: pointer" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
             (click)="onSelectDish(dish)">
             <img [src]="dish.path" class="card-img-top" alt="...">
@@ -31,8 +29,18 @@
           (click)="onCloseModal()"></button>
       </div>
       <div class="modal-body">
-        <div><img [src]="selectedDish.path" class="center"></div>
-        <label>Приготування:</label>
+        <div class="div-img">
+        <img [src]="selectedDish.path" class="center fit-img">
+        </div>
+        <div>
+          <h4>Ingredients:</h4>
+        <ul *ngFor="let ingredient of selectedDish.ingredients">
+          <li>
+            {{ingredient}}
+          </li>
+        </ul>
+        </div>
+        <h4>Preparation:</h4>
         <p>{{selectedDish.description}}</p>
       </div>
     </div>

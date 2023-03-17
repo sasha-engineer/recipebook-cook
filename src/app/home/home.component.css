@@ -16,7 +16,37 @@
 }
 
 .card-title {
-  color: #1669bb;
+  color: #0e4377;
   text-transform: uppercase;
   font-size: larger;
+  font-weight: 600;
+}
+
+.fit-img2 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  max-width: 100%;
+}
+
+.div-img {
+  display: flex;
+  justify-content: center;
+}
+
+.fit-img {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+h4,
+.modal-title {
+  color: rgb(15 53 141);
+}
+
+li,
+p {
+  color: #535464;
 }
