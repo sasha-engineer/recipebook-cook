@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/complete-guide",
+    "public": "dist/recipebook-cook",
     "ignore": [
       "firebase.json",
       "**/.*",
