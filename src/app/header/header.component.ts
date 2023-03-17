@@ -1,9 +1,8 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataStorageService } from '../shared/data-storage.service';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AuthService } from '../auth/auth.service';
 
+import { DataStorageService } from '../shared/data-storage.service';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
 
@@ -15,10 +14,10 @@ import * as AuthActions from '../auth/store/auth.actions';
 export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private authSubscription: Subscription;
+  @ViewChild('navbarToggler', { read: ElementRef, static: false }) navbarToggler: ElementRef;
 
   constructor(
     private dataStorageService: DataStorageService,
-    private authService: AuthService,
     private store: Store<fromApp.AppState>
   ) { }
 
@@ -36,13 +35,20 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onSaveData() {
     this.dataStorageService.saveRecipes();
     this.dataStorageService.saveIngredients();
+    this.onRouterLink();
   }
 
   onFetchData() {
     this.dataStorageService.getRecipes();
+    this.onRouterLink();
   }
 
   onLogout() {
     this.store.dispatch(new AuthActions.Logout());
+    this.onRouterLink();
+  }
+
+  onRouterLink() {
+    this.navbarToggler.nativeElement.click();
   }
 }
