@@ -6,21 +6,6 @@
           <div class="alert alert-danger col-md-9" *ngIf="errorMessage">
             <span> {{errorMessage}} </span>
           </div>
-          <!--
-            <div
-            class="toast align-items-center text-bg-danger border-0 fade" [ngClass]="errorMessage != null ? 'show': ''"
-            role="alert"
-            aria-live="assertive"
-            aria-atomic="true"
-            *ngIf="errorMessage">
-              <div class="d-flex">
-                <div class="toast-body">
-                  Hello, world! This is a toast message.
-                </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-              </div>
-            </div>
-          -->
 
           <div *ngIf="isLoading" style="text-align: center">
             <app-loading-spinner></app-loading-spinner>
@@ -31,12 +16,12 @@
               <div class="form-floating mb-4">
                 <input type="email" id="email" class="form-control" ngModel name="email" required email
                   placeholder="email" />
-                <label for="email">E-Mail</label>
+                <label for="email">E-mail</label>
               </div>
             </div>
             <div class="form-group col-md-9">
               <div class="form-floating mb-4">
-                <input type="password" id="password" class="form-control" ngModel name="password" required minlength="6"
+                <input type="password" id="password" class="form-control" ngModel name="password" required minlength="8"
                   placeholder="password" />
                 <label for="password">Password</label>
               </div>
