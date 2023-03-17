@@ -18,14 +18,14 @@
       </ul>
       <div class="d-lg-flex col-lg-3">
         <ul class="navbar-nav col-lg-6">
-          <li class="nav-item dropdown" *ngIf="isAuthenticated">
+          <!-- <li class="nav-item dropdown" *ngIf="isAuthenticated">
             <a class="nav-link dropdown-toggle" style="cursor: pointer;" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">Manage</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
               <li><a class="dropdown-item" style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
             </ul>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" style="cursor: pointer;" (click)="onLogout()" *ngIf="isAuthenticated">Logout</a>
           </li>

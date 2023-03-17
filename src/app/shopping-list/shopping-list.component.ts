@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { ShoppingListService } from './shopping-list.service';
 import { Ingredient } from '../shared/ingredient.model';
 import * as fromApp from '../store/app.reducer';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-shopping-list',
@@ -37,10 +38,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ingredients: Ingredient[];
   private ingredientSubscription: Subscription;
   private userAuthSubscription: Subscription;
+  private isUserAuthenticated: boolean = false;
 
   constructor(
     private shoppingListService: ShoppingListService,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private dataStorageService: DataStorageService
   ) { }
 
   ngOnInit(): void {
@@ -49,7 +52,13 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     this.ingredientSubscription =
       this.shoppingListService
         .ingredientChanged
-        .subscribe(data => this.ingredients = data);
+        .subscribe(data => {
+          this.ingredients = data;
+
+          if (this.isUserAuthenticated) {
+            this.dataStorageService.saveIngredients();
+          }
+        });
 
     this.userAuthSubscription =
       this.store
@@ -57,6 +66,9 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
         .subscribe(authState => {
           if (!authState.user) {
             this.shoppingListService.setDefaultIngredients();
+          }
+          else {
+            this.isUserAuthenticated = true;
           }
         });
   }

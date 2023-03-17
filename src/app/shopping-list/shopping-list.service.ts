@@ -34,11 +34,13 @@ export class ShoppingListService {
 
   incrementIngredient(index: number) {
     this.ingredients[index].amount++;
+    this.ingredientChanged.next(this.ingredients.slice());
   }
 
   decreaseIngredient(index: number) {
     if (this.ingredients[index].amount > 0) {
       this.ingredients[index].amount--;
+      this.ingredientChanged.next(this.ingredients.slice());
     }
   }
 
@@ -48,6 +50,7 @@ export class ShoppingListService {
   }
 
   addIngredients(newIngredients: Ingredient[]) {
+    // TODO: add validation of existing items in the list
     this.ingredients.push(...newIngredients);
     this.ingredientChanged.next(this.ingredients.slice());
   }
