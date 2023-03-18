@@ -41,7 +41,7 @@ export class RecipeDetailComponent implements OnInit{
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 
-  onBack(){
+  onBackToRecipes(){
     this.router.navigate(['../'], {relativeTo: this.route});
   }
 }

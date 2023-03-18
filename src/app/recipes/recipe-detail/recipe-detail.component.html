@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col-xs-12">
-    <div style="cursor: pointer;" (click)="onBack()">Go to Recipes</div>
+    <a href="#" routerLink="/recipes" style="cursor: pointer;" (click)="onBackToRecipes()">Back to Recipes</a>
   </div>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <img [src]="recipe.imagePath" alt="" class="img-responsive" style="max-height: 200px;">
+  <div class="col-xs-12 div-img">
+    <img [src]="recipe.imagePath" alt="" class="img-responsive fit-img">
   </div>
 </div>
 <div class="row">
@@ -20,16 +20,24 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle justify-content-md-end" data-bs-toggle="dropdown">
+    <div class="btn-group dropend">
+      <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown">
         Manage Recipe <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu ">
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onAddToShoppingList()">To Shopping List</a></li>
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onEditRecipe()">Edit Recipe</a></li>
+        <li>
+          <hr class="dropdown-divider">
+        </li>
         <li><a class="dropdown-item" style="cursor: pointer;" (click)="onDeleteRecipe()">Delete Recipe</a></li>
       </ul>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h4>Ingredients:</h4>
   </div>
 </div>
 <div class="row">

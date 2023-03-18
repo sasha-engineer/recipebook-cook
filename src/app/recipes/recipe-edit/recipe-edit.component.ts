@@ -23,7 +23,7 @@ export class RecipeEditComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.editMode = params['id'] != null;
-          if (this.editMode){
+          if (this.editMode) {
             this.id = params['id'];
           }
           this.initForm();
@@ -32,7 +32,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.editMode){
+    if (this.editMode) {
       this.recipeService.updateRecipe(this.recipeForm.value);
     } else {
       this.recipeService.addRecipe(this.recipeForm.value);
@@ -42,7 +42,7 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onCancel() {
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   onAddIngredient() {
@@ -57,7 +57,7 @@ export class RecipeEditComponent implements OnInit {
     );
   }
 
-  onDeleteIngredient(index: number){
+  onDeleteIngredient(index: number) {
     // this.recipeService.deleteRecipe(index);
     (this.recipeForm.get('ingredients') as FormArray).removeAt(index);
   }
@@ -73,7 +73,7 @@ export class RecipeEditComponent implements OnInit {
     if (this.editMode) {
       recipe = this.recipeService.getRecipe(this.id);
 
-    console.log(recipe);
+      console.log(recipe);
 
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
@@ -81,8 +81,10 @@ export class RecipeEditComponent implements OnInit {
             new FormGroup({
               'name': new FormControl(ingredient.name, Validators.required),
               'amount': new FormControl(ingredient.amount,
-                [Validators.required,
-                Validators.pattern(/^[1-9]+[0-9]*$/)])
+                [
+                  Validators.required,
+                  Validators.pattern(/^[1-9]+[0-9]*$/)
+                ])
             })
           );
         }
@@ -98,7 +100,7 @@ export class RecipeEditComponent implements OnInit {
     });
   }
 
-  onBack(){
+  onNavigateToRecipes() {
     this.router.navigate(['/recipes']);
   }
 }

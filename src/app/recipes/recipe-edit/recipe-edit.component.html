@@ -2,9 +2,12 @@
   <div class="col-md-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="col-md-12">
-        <div style="cursor: pointer;" (click)="onBack()">Go to Recipes</div>
+        <div>
+          <a href="#" routerLink="/recipes" style="cursor: pointer;" (click)="onNavigateToRecipes()"><i class="bi bi-backspace"></i>Back to Recipes</a>
+        </div>
         <div class="form-group mb-3 d-md-flex justify-content-md-end">
-          <button type="submit" class="btn btn-outline-success" [disabled]="!recipeForm.valid">{{editMode ? 'Update' : 'Add to the Recipes'}}</button>
+          <button type="submit" class="btn btn-outline-success" [disabled]="!recipeForm.valid">{{editMode ? 'Update' :
+            'Add to the Recipes'}}</button>
           <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
         </div>
       </div>
@@ -20,8 +23,7 @@
         <div class="col-md-12">
           <div class="form-group form-floating  mb-3">
             <input type="text" id="imagePath" class="form-control" formControlName="imagePath"
-              placeholder="Image URL..."
-              #imagePath>
+              placeholder="Image URL..." #imagePath>
             <label for="imagePath">Image URL</label>
           </div>
         </div>
@@ -35,17 +37,15 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-floating form-group mb-3">
-            <textarea type="text" id="description" class="form-control" style="height: 100px" rows="6" formControlName="description"
-              placeholder="description"></textarea>
+            <textarea type="text" id="description" class="form-control" style="height: 100px" rows="6"
+              formControlName="description" placeholder="description"></textarea>
             <label for="description">Description</label>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12" formArrayName="ingredients">
-          <div class="row"
-          *ngFor="let ingredientCtrl of ingredientControls; let i = index"
-          [formGroupName]="i">
+          <div class="row" *ngFor="let ingredientCtrl of ingredientControls; let i = index" [formGroupName]="i">
             <div class="input-group form-group">
               <input type="text" class="form-control" formControlName="name" placeholder="Ingredient name">
               <input type="number" class="form-control" formControlName="amount" placeholder="Amount">

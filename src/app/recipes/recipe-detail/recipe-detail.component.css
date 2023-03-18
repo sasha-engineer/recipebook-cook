@@ -1,0 +1,10 @@
+.div-img {
+  display: flex;
+  justify-content: center;
+}
+
+.fit-img {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  max-height: 200px;
+}

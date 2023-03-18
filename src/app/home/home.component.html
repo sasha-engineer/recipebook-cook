@@ -30,15 +30,15 @@
       </div>
       <div class="modal-body">
         <div class="div-img">
-        <img [src]="selectedDish.path" class="center fit-img">
+          <img [src]="selectedDish.path" class="fit-img">
         </div>
         <div>
           <h4>Ingredients:</h4>
-        <ul *ngFor="let ingredient of selectedDish.ingredients">
-          <li>
-            {{ingredient}}
-          </li>
-        </ul>
+          <ul *ngFor="let ingredient of selectedDish.ingredients">
+            <li>
+              {{ingredient}}
+            </li>
+          </ul>
         </div>
         <h4>Preparation:</h4>
         <p>{{selectedDish.description}}</p>

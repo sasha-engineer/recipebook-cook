@@ -22,15 +22,6 @@
   font-weight: 600;
 }
 
-.fit-img2 {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
-  max-width: 100%;
-}
-
 .div-img {
   display: flex;
   justify-content: center;
