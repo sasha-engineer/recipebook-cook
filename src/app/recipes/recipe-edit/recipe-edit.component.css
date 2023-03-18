@@ -6,3 +6,13 @@ textarea.ng-invalid.ng-touched{
 div>button {
   margin-right: 10px;
 }
+
+.div-img {
+  display: flex;
+  justify-content: center;
+}
+
+.fit-img {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}

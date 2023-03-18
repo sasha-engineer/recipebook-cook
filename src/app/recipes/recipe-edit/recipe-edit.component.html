@@ -3,9 +3,10 @@
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="col-md-12">
         <div>
-          <a href="#" routerLink="/recipes" style="cursor: pointer;" (click)="onNavigateToRecipes()"><i class="bi bi-backspace"></i>Back to Recipes</a>
+          <a href="#" routerLink="/recipes" style="cursor: pointer;" (click)="onNavigateToRecipes()"><i
+              class="bi bi-backspace"></i>Back to Recipes</a>
         </div>
-        <div class="form-group mb-3 d-md-flex justify-content-md-end">
+        <div class="form-group mb-3" style="justify-content: flex-end; display: flex;">
           <button type="submit" class="btn btn-outline-success" [disabled]="!recipeForm.valid">{{editMode ? 'Update' :
             'Add to the Recipes'}}</button>
           <button type="button" class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
@@ -29,8 +30,8 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12 mb-3 text-center">
-          <img [src]="imagePath.value" class="img-responsive" id="imgView">
+        <div class="col-md-12 mb-3 div-img">
+          <img [src]="imagePath.value" class="fit-img" id="imgView">
           <p class="text-center" *ngIf="!imagePath.value">Image Preview</p>
         </div>
       </div>

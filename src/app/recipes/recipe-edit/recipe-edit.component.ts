@@ -1,3 +1,4 @@
+import { DataStorageService } from './../../shared/data-storage.service';
 import { Recipe } from './../recipe.model';
 import { RecipeService } from './../recipe.service';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,8 @@ export class RecipeEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private recipeService: RecipeService,
-    private router: Router) { }
+    private router: Router,
+    private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.route.params
@@ -38,23 +40,29 @@ export class RecipeEditComponent implements OnInit {
       this.recipeService.addRecipe(this.recipeForm.value);
     }
 
-    this.onCancel();
+    this.dataStorageService.saveRecipes();
+    this.navigateToRecipePage();
   }
 
   onCancel() {
+    this.navigateToRecipePage();
+  }
+
+  private navigateToRecipePage() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   onAddIngredient() {
-    (this.recipeForm.get('ingredients') as FormArray).push(
-      new FormGroup({
-        'name': new FormControl(null, Validators.required),
-        'amount': new FormControl(null, [
-          Validators.required,
-          Validators.pattern(/^[1-9]+[0-9]*$/)
-        ])
-      })
-    );
+    (this.recipeForm.get('ingredients') as FormArray)
+      .push(
+        new FormGroup({
+          'name': new FormControl(null, Validators.required),
+          'amount': new FormControl(null, [
+            Validators.required,
+            Validators.pattern(/^[1-9]+[0-9]*$/)
+          ])
+        })
+      );
   }
 
   onDeleteIngredient(index: number) {

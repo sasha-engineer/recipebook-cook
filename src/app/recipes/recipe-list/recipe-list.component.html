@@ -1,15 +1,19 @@
 <div class="row">
-    <div class="col-xs-12">
-        <button class="btn btn-success"
-        [routerLink]="['new']">New Recipe</button>
+  <div class="col-xs-12">
+    <h4 class="header-title">My list</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div>
+      <button class="btn btn-outline-success" [routerLink]="['new']">New Recipe</button>
     </div>
+  </div>
 </div>
 <hr>
 <div class="row">
-    <div class="col-xs-12 list-group">
-        <app-recipe-item
-        [routerLink]="['/recipes', item.id]"
-        *ngFor="let item of recipes"
-        [recipeItem]="item"></app-recipe-item>
-    </div>
+  <div class="col-xs-12 list-group">
+    <app-recipe-item [routerLink]="['/recipes', item.id]" *ngFor="let item of recipes"
+      [recipeItem]="item"></app-recipe-item>
+  </div>
 </div>
