@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.setBookLoaderTimer();
+    //this.setBookLoaderTimer();
 
     if (isPlatformBrowser(this.platformId)) {
       this.store.dispatch(new AuthActions.AutoLogin());
