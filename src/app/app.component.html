@@ -1,6 +1,6 @@
-<app-header></app-header>
+<app-header *ngIf="isBookLoaded"></app-header>
 
-<header class="masthead" style="background-image: url('./assets/header/tomato-soup-wooden-board.jpg')">
+<header *ngIf="isBookLoaded" class="masthead" style="background-image: url('./assets/header/tomato-soup-wooden-board.jpg')">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -18,4 +18,23 @@
   </div>
 </header>
 
-<router-outlet></router-outlet>
+<router-outlet *ngIf="isBookLoaded"></router-outlet>
+
+
+<div class="body-book" *ngIf="!isBookLoaded">
+<div class="book">
+ <span class="page turn"></span>
+  <span class="page turn"></span>
+  <span class="page turn"></span>
+  <span class="page turn"></span>
+  <span class="page turn">
+    My favourit recipes:
+    <p>
+      Here are the top 3 recipes
+    </p>
+  </span>
+  <span class="cover">Published in Kyiv</span>
+  <span class="page">Page simple</span>
+  <span class="cover turn" style="color:aliceblue">Recipe Book Cook</span>
+</div>
+</div>
