@@ -81,8 +81,6 @@ export class RecipeEditComponent implements OnInit {
     if (this.editMode) {
       recipe = this.recipeService.getRecipe(this.id);
 
-      console.log(recipe);
-
       if (recipe['ingredients']) {
         for (let ingredient of recipe.ingredients) {
           ingredients.push(

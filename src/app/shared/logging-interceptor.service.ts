@@ -14,10 +14,6 @@ export class LoggingInterceptorService implements HttpInterceptor {
   constructor(private store: Store<fromApp.AppState>) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    console.log('Outgoing request');
-    console.log(request.url);
-    console.log(request.headers);
-
     return this.store.select('auth').pipe(
       take(1),
       map(authState => {

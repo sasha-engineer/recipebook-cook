@@ -56,18 +56,14 @@ export class RecipeService {
   }
 
   updateRecipe(recipe: Recipe) {
-    console.log(recipe.name);
-
     this.recipes.filter((item, index, arr) => {
       if (item.id === recipe.id) {
-        console.log(index + ' - ' + recipe);
         arr[index] = recipe;
         return true;
       }
       return false;
     });
 
-    console.log(this.recipes.slice());
     this.recipeChangedSubject.next(this.recipes.slice());
   }
 
