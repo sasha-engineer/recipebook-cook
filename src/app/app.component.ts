@@ -4,7 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 import * as fromApp from './store/app.reducer';
 import * as AuthActions from './auth/store/auth.actions';
-import { exhaustMap, map, Subscription, take } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
