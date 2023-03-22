@@ -1,11 +1,13 @@
 <app-header></app-header>
 
-<header class="masthead"
-  style="background-image: url('./assets/header/tomato-soup-wooden-board.jpg')">
+<header class="masthead" style="background-image: url('./assets/header/tomato-soup-wooden-board.jpg')">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-10 mx-auto">
+         <div class="user-title" *ngIf="userMail != ''">
+          Hey, {{userMail}}!
+        </div>
         <div class="site-heading">
           <!--  <h1>Good Cook Book</h1> -->
         </div>
@@ -14,6 +16,7 @@
           <h2 class="entry-title">Bon Appetit</h2>
           <div class="banner_text"></div>
         </div>
+
       </div>
     </div>
   </div>

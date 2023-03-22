@@ -34,9 +34,9 @@ export class AuthComponent {
     // Todo: add alert
   }
 
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
-  }
+  onSignUp() { this.isLoginMode = false; }
+
+  onLogin() { this.isLoginMode = true; }
 
   onSubmit(form: NgForm) {
     if (!form.valid) {

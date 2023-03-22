@@ -27,9 +27,8 @@
               </div>
             </div>
             <div>
-              <button class="btn btn-outline-success" type="submit">{{ isLoginMode ? 'Login' : 'Sign Up' }}</button>
-              <button class="btn btn-outline-primary" type="button" (click)="onSwitchMode()">Switch to {{ isLoginMode ?
-                'Sign Up' : 'Login' }}</button>
+              <button class="btn btn-outline-success" (click)="onLogin()">Login</button>
+              <button class="btn btn-outline-primary" (click)="onSignUp()">Sign Up</button>
             </div>
           </form>
         </div>
