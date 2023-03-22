@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   topDishes: Dish[] = [
     {
       title: 'Borscht',
-      path: './assets/top/borshh.jpg',
+      path: './assets/top/borscht.jpg',
       description: 'First, we cook the broth. Pour 1.5-2 liters of water into the pot. Add meat and put on medium heat. Before boiling, remove the foam. As soon as the broth boils, cover with a lid and cook on low heat for an hour to an hour and a half. ' +
         'In the meantime, we are preparing the roast. We clean beets, carrots and onions. Grate the beets on a coarse grater, and grate the carrots on a medium grater. Cut the onion into cubes. ' +
         'Heat oil in a frying pan over medium heat, add onions and carrots and fry for 5 minutes. Then we add the beetroot (it can be sprinkled with citric acid or sprinkled with fresh lemon juice - this way the borscht will be really red). Fry the vegetables for another 5 minutes, add tomato paste, mix and fry for another 5-7 minutes. ' +

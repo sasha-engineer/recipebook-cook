@@ -11,15 +11,15 @@
 
   background-color: #1976d21a;
   border-top: 0.5px solid #DBDBDB;
-  margin: 1rem auto;
-  max-width: 21rem;
+  margin: 2rem auto;
+  max-width: 18rem;
 }
 
 .card-title {
   color: #0e4377;
   text-transform: uppercase;
-  font-size: larger;
-  font-weight: 600;
+  font-size: medium;
+  font-weight: 500;
 }
 
 .div-img {
@@ -28,7 +28,7 @@
 }
 
 .fit-img {
-  width: 100%;
+  width: 50%;
   margin-bottom: 1.5rem;
 }
 
@@ -40,4 +40,9 @@ h4,
 li,
 p {
   color: #535464;
+}
+
+.flag-icon {
+  width: 1.7rem;
+  margin-left: 0.5rem;
 }
