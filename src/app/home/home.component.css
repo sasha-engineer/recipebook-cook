@@ -47,4 +47,15 @@ p {
   margin-left: 0.5rem;
 }
 
- /* 3 dots menu  */
+.li {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: unset;
+  font-variation-settings: "wght" 0, "opsz" 8;
+}
+
+.divider {
+  margin: 24px auto;
+  border-bottom: 1px solid rgb(232, 233, 235);
+  width: 100%;
+}

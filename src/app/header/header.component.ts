@@ -1,10 +1,12 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { DataStorageService } from '../shared/data-storage.service';
 import * as fromApp from '../store/app.reducer';
 import * as AuthActions from '../auth/store/auth.actions';
+
+const MIN_WIDTH: number = 992;
 
 @Component({
   selector: 'app-header',
@@ -21,15 +23,25 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private store: Store<fromApp.AppState>
   ) { }
 
-  ngOnDestroy(): void {
-    this.authSubscription.unsubscribe();
+  public getScreenWidth: any;
+  public getScreenHeight: any;
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
   }
 
   ngOnInit(): void {
+    this.getScreenWidth = window.innerWidth;
+
     this.authSubscription =
       this.store
         .select('auth')
         .subscribe(authState => this.isAuthenticated = !!authState.user);
+  }
+
+  ngOnDestroy(): void {
+    this.authSubscription.unsubscribe();
   }
 
   onSaveData() {
@@ -48,7 +60,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.onRouterLink();
   }
 
+  onLogin() {
+    this.onRouterLink();
+  }
+
   onRouterLink() {
-    this.navbarToggler.nativeElement.click();
+    if (this.getScreenWidth < MIN_WIDTH) {
+      this.navbarToggler.nativeElement.click();
+    }
   }
 }

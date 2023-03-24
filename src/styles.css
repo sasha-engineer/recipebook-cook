@@ -11,6 +11,7 @@ div>label.form-control {
   display: flex;
   flex-direction: column;
   color: gray;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 }
 
 .header-title {

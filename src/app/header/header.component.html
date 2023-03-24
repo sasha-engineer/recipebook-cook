@@ -1,31 +1,41 @@
- <nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
+<nav class="navbar navbar-expand-lg sticky-top bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand col-lg-3" routerLink="/">
       <img src="./recipe-book.png" class="d-inline-block align-text-top">
       Recipe Book
-      </a>
-    <button class="navbar-toggler" #navbarToggler type="button" data-bs-toggle="collapse" data-bs-target="#navbar-recipe" aria-controls="navbar-recipe" aria-expanded="false">
+    </a>
+    <button class="navbar-toggler" #navbarToggler type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbar-recipe" aria-controls="navbar-recipe" aria-expanded="false">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" #navbarRecipe id="navbar-recipe">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" *ngIf="isAuthenticated">
+        <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+          *ngIf="isAuthenticated">
           <a class="nav-link active" aria-current="page" routerLink="/recipes" (click)="onRouterLink()">Recipes</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/shopping-list" (click)="onRouterLink()">Shopping List</a>
         </li>
-        <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
-          <a class="nav-link" routerLink="/audit" (click)="onRouterLink()">Audit</a>
-        </li>
       </ul>
       <div class="d-lg-flex col-lg-3">
         <ul class="navbar-nav col-lg-6">
-          <li class="nav-item">
-            <a class="nav-link" style="cursor: pointer;" (click)="onLogout()" *ngIf="isAuthenticated">Logout</a>
+          <li class="nav-item dropdown" *ngIf="isAuthenticated">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" routerLink="/audit" (click)="onRouterLink()">Audit</a>
+              </li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="onLogout()">Logout</a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="!isAuthenticated">
-            <a class="nav-link" routerLink="/auth" (click)="onLogout()">Login</a>
+          <li class="nav-item" *ngIf="!isAuthenticated">
+            <a class="nav-link" routerLink="/auth" (click)="onLogin()">Login</a>
           </li>
         </ul>
       </div>
