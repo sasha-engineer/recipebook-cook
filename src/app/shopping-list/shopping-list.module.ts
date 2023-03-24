@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingListComponent } from './shopping-list.component';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { SharedModule } from '../shared/shared.module';
-import { ShoppingListResolverService } from './shopping-list-resolver.service';
+import { SHOPPING_LIST_RESOLVER } from './shopping-list.resolver';
 
 @NgModule({
   declarations: [ShoppingListComponent, ShoppingEditComponent],
@@ -15,7 +15,7 @@ import { ShoppingListResolverService } from './shopping-list-resolver.service';
       {
         path: '',
         component: ShoppingListComponent,
-        resolve: [ShoppingListResolverService]
+        resolve: [SHOPPING_LIST_RESOLVER]
       }
     ]),
     SharedModule

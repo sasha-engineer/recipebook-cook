@@ -1,25 +1,25 @@
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 
-import { ShoppingListResolverService } from './../shopping-list/shopping-list-resolver.service';
-import { AuthGuard } from "../auth/auth.guard";
-import { RecipesResolverService } from "./recipes-resolver.service";
+import { SHOPPING_LIST_RESOLVER } from '../shopping-list/shopping-list.resolver';
+import { RECIPE_RESOLVER } from "./recipes.resolver";
 import { RecipesComponent } from "./recipes.component";
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { NgModule } from '@angular/core';
+import { AUTH_GUARD } from '../auth/auth.guard';
 
 const appRoutes: Routes = [
   {
     path: '',
     component: RecipesComponent,
-    resolve: [RecipesResolverService, ShoppingListResolverService],
-    canActivate: [AuthGuard],
+    resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+    canActivate: [AUTH_GUARD],
     children: [
       { path: '', component: RecipeListComponent },
       { path: 'new', component: RecipeEditComponent },
-      { path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService, ShoppingListResolverService] },
-      { path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService, ShoppingListResolverService] }
+      { path: ':id', component: RecipeDetailComponent, resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER] },
+      { path: ':id/edit', component: RecipeEditComponent, resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER] }
     ]
   }
 ];
@@ -28,6 +28,4 @@ const appRoutes: Routes = [
   imports: [RouterModule.forChild(appRoutes)],
   exports: [RouterModule]
 })
-export class RecipesRoutingModule {
-
-}
+export class RecipesRoutingModule { }

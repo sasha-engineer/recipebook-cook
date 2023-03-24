@@ -1,3 +1,5 @@
+import { AuditService } from './../audit/audit.service';
+import { AuditAction } from './audit-action.model';
 import { environment } from './../../environments/environment';
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnDestroy } from '@angular/core';
@@ -11,6 +13,21 @@ import { Recipe } from './../recipes/recipe.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 import * as fromApp from '../store/app.reducer';
+import { AuditData } from './audit-data.model';
+
+const DATABASE_URL: string = "https://recipe-book-fb4dc-default-rtdb.firebaseio.com/";
+const RECIPES_COLLECTION: string = 'recipes.json';
+const INGREDIENTS_COLLECTION: string = 'ingredients.json';
+const AUDIT_COLLECTION: string = 'audit.json';
+
+const createAuditItem = (action: AuditAction, userId: string) => {
+  const createdOn = new Date().toUTCString();
+  return new AuditData(
+    userId,
+    action,
+    createdOn
+  );
+}
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService implements OnDestroy {
@@ -21,7 +38,8 @@ export class DataStorageService implements OnDestroy {
     private httpClient: HttpClient,
     private recipeService: RecipeService,
     private shoppingListService: ShoppingListService,
-    private store: Store<fromApp.AppState>
+    private store: Store<fromApp.AppState>,
+    private auditService: AuditService
   ) {
     this.userAuthSubscription =
       this.store
@@ -35,9 +53,10 @@ export class DataStorageService implements OnDestroy {
   }
 
   createRecipe(data: Recipe) {
+    const url = DATABASE_URL + this.userId + '-' + RECIPES_COLLECTION;
     this.httpClient
       .post<{ name: string }>(
-        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
+        url,
         data,
         { observe: 'response' }
       )
@@ -50,11 +69,10 @@ export class DataStorageService implements OnDestroy {
 
   saveRecipes() {
     const data = this.recipeService.getRecipes();
+    const url = DATABASE_URL + this.userId + '-' + RECIPES_COLLECTION;
+
     this.httpClient
-      .put(
-        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json',
-        data
-      )
+      .put(url, data)
       .subscribe(response => {
         if (!environment.production) {
           console.log(response);
@@ -63,10 +81,10 @@ export class DataStorageService implements OnDestroy {
   }
 
   getRecipes() {
+    const url = DATABASE_URL + this.userId + '-' + RECIPES_COLLECTION;
+
     return this.httpClient
-      .get<Recipe[]>(
-        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-recipes.json'
-      )
+      .get<Recipe[]>(url)
       .pipe(
         map(data => {
           if (data) {
@@ -84,12 +102,10 @@ export class DataStorageService implements OnDestroy {
 
   saveIngredients() {
     const data = this.shoppingListService.getIngredients();
+    const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_COLLECTION;
 
     this.httpClient
-      .put(
-        'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json',
-        data
-      )
+      .put(url, data)
       .subscribe(response => {
         if (!environment.production) {
           console.log(response);
@@ -99,10 +115,10 @@ export class DataStorageService implements OnDestroy {
 
   getIngredients() {
     if (this.userId) {
+      const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_COLLECTION;
+
       return this.httpClient
-        .get<Ingredient[]>(
-          'https://recipe-book-fb4dc-default-rtdb.firebaseio.com/' + this.userId + '-ingredients.json'
-        )
+        .get<Ingredient[]>(url)
         .pipe(
           tap(data => this.shoppingListService.setIngredients(data))
         );
@@ -110,5 +126,43 @@ export class DataStorageService implements OnDestroy {
     else {
       this.shoppingListService.setDefaultIngredients();
     }
+  }
+
+  addAudit(action: AuditAction) {
+    const auditItem = createAuditItem(action, this.userId);
+    const url = DATABASE_URL + AUDIT_COLLECTION;
+
+    this.httpClient
+      .post(url, auditItem)
+      .subscribe(response => {
+        if (!environment.production) {
+          console.log(response);
+        }
+      });
+  }
+
+  getAudit() {
+    const url = DATABASE_URL + AUDIT_COLLECTION;
+
+    return this.httpClient
+      .get<AuditData[]>(url)
+      .pipe(
+        map(data => {
+          if (data) {
+            const propertyValues = Object.values(data);
+
+            return propertyValues
+              .filter(item => {
+                if (this.userId === item.userId) {
+                  return new AuditData(
+                    item.userId,
+                    AuditAction[item.action],
+                    item.createdOn);
+                }
+              });
+          }
+        }),
+        tap(data => this.auditService.setData(data))
+      );
   }
 }

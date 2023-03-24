@@ -10,4 +10,12 @@ div>label.form-control {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  color: gray;
+}
+
+.header-title {
+  padding: 15px 0 20px;
+  color: #f69b23;
+  font-size: 26px;
+  font-weight: 600;
 }

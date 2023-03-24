@@ -1,3 +1,4 @@
+import { AuditService } from './audit/audit.service';
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -10,6 +11,7 @@ import { LoggingInterceptorService } from './shared/logging-interceptor.service'
   providers: [
     ShoppingListService,
     RecipeService,
+    AuditService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

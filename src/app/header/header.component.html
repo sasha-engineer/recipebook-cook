@@ -15,6 +15,9 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/shopping-list" (click)="onRouterLink()">Shopping List</a>
         </li>
+        <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
+          <a class="nav-link" routerLink="/audit" (click)="onRouterLink()">Audit</a>
+        </li>
       </ul>
       <div class="d-lg-flex col-lg-3">
         <ul class="navbar-nav col-lg-6">

@@ -49,17 +49,28 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.ingredients = this.shoppingListService.getIngredients();
 
+    this
+      .initAuthSubscription()
+      .initIngredientSubscription();
+  }
+
+  private initIngredientSubscription() {
     this.ingredientSubscription =
       this.shoppingListService
         .ingredientChanged
         .subscribe(data => {
-          this.ingredients = data;
+          this.ingredients = data.ingredients;
 
           if (this.isUserAuthenticated) {
             this.dataStorageService.saveIngredients();
+            this.dataStorageService.addAudit(data.action);
           }
         });
 
+    return this;
+  }
+
+  private initAuthSubscription() {
     this.userAuthSubscription =
       this.store
         .select('auth')
@@ -71,6 +82,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
             this.isUserAuthenticated = true;
           }
         });
+    return this;
   }
 
   ngOnDestroy(): void {
