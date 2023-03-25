@@ -16,9 +16,10 @@ import * as fromApp from '../store/app.reducer';
 import { AuditData } from './audit-data.model';
 
 const DATABASE_URL: string = "https://recipe-book-fb4dc-default-rtdb.firebaseio.com/";
-const RECIPES_COLLECTION: string = 'recipes.json';
-const INGREDIENTS_COLLECTION: string = 'ingredients.json';
-const AUDIT_COLLECTION: string = 'audit.json';
+const RECIPES_DOCUMENT: string = 'recipes.json';
+const INGREDIENTS_DOCUMENT: string = 'ingredients.json';
+const AUDIT_DOCUMENT: string = 'audit.json';
+const RECIPE_COLLECTION_DOCUMENT: string = 'recipe-collection.json';
 
 const createAuditItem = (action: AuditAction, userId: string) => {
   const createdOn = new Date().toUTCString();
@@ -53,7 +54,7 @@ export class DataStorageService implements OnDestroy {
   }
 
   createRecipe(data: Recipe) {
-    const url = DATABASE_URL + this.userId + '-' + RECIPES_COLLECTION;
+    const url = DATABASE_URL + this.userId + '-' + RECIPES_DOCUMENT;
     this.httpClient
       .post<{ name: string }>(
         url,
@@ -69,7 +70,7 @@ export class DataStorageService implements OnDestroy {
 
   saveRecipes() {
     const data = this.recipeService.getRecipes();
-    const url = DATABASE_URL + this.userId + '-' + RECIPES_COLLECTION;
+    const url = DATABASE_URL + this.userId + '-' + RECIPES_DOCUMENT;
 
     this.httpClient
       .put(url, data)
@@ -81,7 +82,7 @@ export class DataStorageService implements OnDestroy {
   }
 
   getRecipes() {
-    const url = DATABASE_URL + this.userId + '-' + RECIPES_COLLECTION;
+    const url = DATABASE_URL + this.userId + '-' + RECIPES_DOCUMENT;
 
     return this.httpClient
       .get<Recipe[]>(url)
@@ -102,7 +103,7 @@ export class DataStorageService implements OnDestroy {
 
   saveIngredients() {
     const data = this.shoppingListService.getIngredients();
-    const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_COLLECTION;
+    const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_DOCUMENT;
 
     this.httpClient
       .put(url, data)
@@ -115,7 +116,7 @@ export class DataStorageService implements OnDestroy {
 
   getIngredients() {
     if (this.userId) {
-      const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_COLLECTION;
+      const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_DOCUMENT;
 
       return this.httpClient
         .get<Ingredient[]>(url)
@@ -130,7 +131,7 @@ export class DataStorageService implements OnDestroy {
 
   addAudit(action: AuditAction) {
     const auditItem = createAuditItem(action, this.userId);
-    const url = DATABASE_URL + AUDIT_COLLECTION;
+    const url = DATABASE_URL + AUDIT_DOCUMENT;
 
     this.httpClient
       .post(url, auditItem)
@@ -142,7 +143,7 @@ export class DataStorageService implements OnDestroy {
   }
 
   getAudit() {
-    const url = DATABASE_URL + AUDIT_COLLECTION;
+    const url = DATABASE_URL + AUDIT_DOCUMENT;
 
     return this.httpClient
       .get<AuditData[]>(url)

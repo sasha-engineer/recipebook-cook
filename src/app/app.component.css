@@ -39,17 +39,17 @@ header.masthead .overlay {
 }
 
 header.masthead .site-heading {
-  padding: 100px 0 100px;
+  padding: 3rem;
   color: #faaa42;
 }
 
 @media only screen and (min-width: 768px) {
   header.masthead .site-heading {
-    padding: 100px 0
+    padding: 3rem;
   }
 
   header.masthead .site-heading h1 {
-    font-size: 50px
+    font-size: 3rem
   }
 }
 
@@ -100,12 +100,12 @@ header.masthead .subheading {
 }
 
 .entry-title {
-  font-size: 3vw;
+  font-size: 2.3vw;
   font-family: 'Domine', serif;
   font-weight: bolder;
   line-height: 1.1;
   display: block;
-  margin-bottom: min(2vw, 3vh);
+  margin-bottom: min(1vw, 2vh);
   color: #003e47;
 }
 

@@ -25,6 +25,7 @@ import { Dish } from './dish.model';
 export class HomeComponent implements OnInit {
   topDishes: Dish[] = [
     {
+      id: 1001,
       title: 'Borscht',
       path: './assets/top/borscht.jpg',
       description: 'First, we cook the broth. Pour 1.5-2 liters of water into the pot. Add meat and put on medium heat. Before boiling, remove the foam. As soon as the broth boils, cover with a lid and cook on low heat for an hour to an hour and a half. ' +
@@ -47,6 +48,7 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
+      id: 1002,
       title: 'Deruny',
       path: './assets/top/deruny.jpg',
       description: 'Peel the potatoes and onions. At the same time, you should not immerse the peeled potatoes in cold water, because part of the starch will come out of it. ' +
@@ -66,6 +68,7 @@ export class HomeComponent implements OnInit {
       ]
     },
     {
+      id: 1003,
       title: 'Varenyky',
       path: './assets/top/varenyky.jpg',
       description: ' Mix the egg and sour milk with a whisk. Salt, add a teaspoon of sugar, stir. Pour soda and wait until the foamy reaction goes away. Pour in the flour (it is better to add it gradually, as you may need less or more). ' +
@@ -87,13 +90,13 @@ export class HomeComponent implements OnInit {
       ]
     }
   ];
-  selectedDish: Dish = new Dish('', '', '', []);
+  selectedDish: Dish = new Dish(0, '', '', '', []);
 
   ngOnInit(): void {
     this.shuffleArr(this.topDishes);
   }
 
-  shuffleArr(array) {
+  shuffleArr(array: Array<Dish>) {
     for (var i = array.length - 1; i > 0; i--) {
       var rand = Math.floor(Math.random() * (i + 1));
       [array[i], array[rand]] = [array[rand], array[i]]
@@ -105,6 +108,6 @@ export class HomeComponent implements OnInit {
   }
 
   onCloseModal() {
-    this.selectedDish = new Dish('', '', '', []);
+    this.selectedDish = new Dish(0, '', '', '', []);
   }
 }

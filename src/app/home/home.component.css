@@ -13,6 +13,7 @@
   border-top: 0.5px solid #DBDBDB;
   margin: 2rem auto;
   max-width: 18rem;
+  cursor: pointer;
 }
 
 .card-title {

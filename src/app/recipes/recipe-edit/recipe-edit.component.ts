@@ -107,6 +107,6 @@ export class RecipeEditComponent implements OnInit {
   }
 
   onNavigateToRecipes() {
-    this.router.navigate(['/recipes']);
+    this.router.navigate(['../../../'], {relativeTo: this.route});
   }
 }

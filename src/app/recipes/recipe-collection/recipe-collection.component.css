@@ -1,0 +1,238 @@
+.recipe-collection-details {
+  font-family: "Instacart Sans", Helvetica, Arial, sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  color: rgb(21, 21, 21);
+}
+
+.div-img {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  height: 11rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+}
+
+.recipe-info-header {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  margin: 10px 0px 12px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.header-name {
+  font-size: 38px;
+  line-height: 26px;
+  font-weight: revert;
+  font-variation-settings: "wght" 663, "opsz" 8;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.4em 0px;
+}
+
+.recipe-info-section {
+  -webkit-box-pack: center;
+  justify-content: center;
+  display: flex;
+  margin: 16px 0px;
+}
+
+.recipe-info-section-content {
+  display: flex;
+}
+
+.recipe-info-item {
+  padding: 0px 16px;
+  border-right: 1px solid rgb(199, 200, 205);
+}
+
+.recipe-info-item-end {
+  padding: 0px 16px;
+}
+
+.recipe-info-item-content-top {
+  color: #ea8b0f;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: unset;
+  font-variation-settings: "wght" 0, "opsz" 8;
+}
+
+.recipe-info-item-content-bottom {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  font-variation-settings: "wght" 336, "opsz" 8;
+}
+
+@media only screen and (min-width: 768px) {
+  .recipe-info-item-content-bottom {
+    text-align: center;
+  }
+}
+
+.recipe-short-description-section {
+  margin: 0px auto;
+  padding: 8px;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: unset;
+  font-variation-settings: "wght" 0, "opsz" 8;
+  text-align: center;
+  max-width: 90vw;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.bookmark-recipe-section {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  margin: 20px 0 30px 0;
+}
+
+.bookmark-recipe-section-content {
+  margin-right: 8px;
+}
+
+.bookmark-recipe-icon {
+  cursor: pointer;
+}
+
+.bookmark-recipe-section-save {
+  margin: 0px 0px 6px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: bold;
+  font-variation-settings: "wght" 336, "opsz" 8;
+  cursor: pointer;
+  outline: none;
+}
+
+.ingredient-item {
+  font-size: 14px;
+  line-height: 25px;
+  font-weight: unset;
+  font-variation-settings: "wght" 0, "opsz" 8;
+  padding-left: 1.8em;
+}
+
+@media only screen and (min-width: 768px) {
+  .ingredient-section {
+    margin: 16px auto;
+  }
+}
+
+.ingredient-section {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: 10px 0 20px;
+  padding: 0 8px;
+}
+
+.ingredient-title {
+  font-size: 22px;
+  line-height: 0px;
+  font-weight: revert;
+  font-variation-settings: "wght" 663, "opsz" 8;
+  color: #ea8b0f;
+}
+
+h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.ingredient-add-cart {
+  margin: 0px;
+}
+
+.recipe-instructions-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.recipe-instructions-section {
+  padding: 0px 8px;
+}
+
+.recipe-instructions-title {
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: revert;
+  font-variation-settings: "wght" 663, "opsz" 8;
+  color: #ea8b0f;
+  margin: 16px auto;
+}
+
+.recipe-instructions-list {
+  display: block;
+}
+
+.recipe-instructions-list-col {
+  display: flex;
+  flex-flow: column wrap;
+}
+
+.instruction-step {
+  width: 100%;
+  margin: 8px;
+  padding-right: 8px;
+  display: flex;
+}
+
+.instruction-step-section-number {
+  width: 50px;
+}
+
+.instruction-step-number {
+  width: 28px;
+  height: 28px;
+  border-radius: 28px;
+  background-color: rgb(190 190 190);
+  color: rgb(246, 247, 248);
+  text-align: center;
+  font-size: 14px;
+  line-height: 28px;
+  font-weight: revert;
+  font-variation-settings: "wght" 336, "opsz" 8;
+}
+
+.step-number-odd {
+  margin-right: 20px;
+  padding-left: 25px;
+}
+
+.instruction-step-text {
+  flex: 1 1 0%;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: revert;
+  font-variation-settings: "wght" 0, "opsz" 8;
+  text-align: justify;
+  padding-right: 5px;
+}

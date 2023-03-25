@@ -2,63 +2,17 @@
   <div class="row justify-content-center align-items-center">
     <div class="col-xs-8">
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" [@dishList] *ngFor="let dish of topDishes">
-          <div class="card rounded w-70 " style="cursor: pointer" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop" (click)="onSelectDish(dish)">
-
-            <!-- TODO: add bookmark
-              <div style="position: absolute; top: 10px; right: 10px; z-index: 1;">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="#343538" xmlns="http://www.w3.org/2000/svg"
-                tabindex="0" size="24" aria-label="save recipe" aria-pressed="false" role="button"
-                class="css-s4owcd-SaveRecipeIcon">
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M5.163 3.319C5 3.639 5 4.059 5 4.9v13.717c0 1.285 0 1.928.27 2.316a1.5 1.5 0 0 0 1.01.624c.468.069 1.043-.219 2.193-.794l2.811-1.405c.263-.131.394-.197.532-.223a.998.998 0 0 1 .368 0c.138.026.27.092.532.223l2.81 1.405c1.15.575 1.726.863 2.193.794a1.5 1.5 0 0 0 1.01-.624c.271-.387.271-1.03.271-2.316V4.9c0-.84 0-1.26-.163-1.581a1.5 1.5 0 0 0-.656-.656c-.32-.163-.74-.163-1.581-.163H7.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656Z"
-                  fill="#343538" fill-opacity="0.8"></path>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M7 4.5v14.117c0 .254 0 .465.002.644.16-.078.35-.173.577-.287l2.811-1.405.051-.026c.187-.095.573-.292 1.006-.373a3 3 0 0 1 1.106 0c.433.08.82.278 1.006.373l.051.026 2.811 1.405c.228.114.417.209.577.287.002-.179.002-.39.002-.644V4.5H7ZM5.164 3.32C5 3.639 5 4.059 5 4.9v13.717c0 1.285 0 1.928.27 2.316a1.5 1.5 0 0 0 1.01.624c.468.069 1.043-.219 2.193-.794l2.811-1.405c.263-.131.394-.197.532-.223a.998.998 0 0 1 .368 0c.138.026.27.092.532.223l2.81 1.405c1.15.575 1.726.863 2.193.794a1.5 1.5 0 0 0 1.01-.624c.271-.387.271-1.03.271-2.316V4.9c0-.84 0-1.26-.163-1.581a1.5 1.5 0 0 0-.656-.656c-.32-.163-.74-.163-1.581-.163H7.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656Z"
-                  fill="#fff"></path>
-              </svg>
-            </div>
- -->
-            <img [src]="dish.path" class="card-img-top" >
+        <div class="col" [@dishList] *ngFor="let item of topDishes" [routerLink]="['/recipes/collection', item.id]"
+          routerLinkActive="active">
+          <div class="card rounded w-70">
+            <img [src]="item.path" class="card-img-top">
             <div class="card-body">
-              <div class="card-title text-center">{{dish.title}}
+              <div class="card-title text-center">{{item.title}}
                 <img src="../assets/UA-Ukraine-Flag-icon.png" class="right flag-icon">
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Dialog -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{selectedDish.title}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-          (click)="onCloseModal()"></button>
-      </div>
-      <div class="modal-body">
-        <div class="div-img">
-          <img [src]="selectedDish.path" class="fit-img">
-        </div>
-        <div class="divider"></div>
-        <div>
-          <h4>Ingredients</h4>
-          <ul>
-            <li *ngFor="let ingredient of selectedDish.ingredients">
-              {{ingredient}}
-            </li>
-          </ul>
-        </div>
-        <div class="divider"></div>
-        <h4>Instructions</h4>
-        <p>{{selectedDish.description}}</p>
       </div>
     </div>
   </div>

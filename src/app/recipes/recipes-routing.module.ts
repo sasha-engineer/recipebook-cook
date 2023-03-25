@@ -1,3 +1,4 @@
+import { RecipeCollectionComponent } from './recipe-collection/recipe-collection.component';
 import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -13,13 +14,30 @@ const appRoutes: Routes = [
   {
     path: '',
     component: RecipesComponent,
-    resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
-    canActivate: [AUTH_GUARD],
     children: [
-      { path: '', component: RecipeListComponent },
-      { path: 'new', component: RecipeEditComponent },
-      { path: ':id', component: RecipeDetailComponent, resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER] },
-      { path: ':id/edit', component: RecipeEditComponent, resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER] }
+      {
+        path: '', component: RecipeListComponent,
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+        canActivate: [AUTH_GUARD]
+      },
+      {
+        path: 'new', component: RecipeEditComponent,
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+        canActivate: [AUTH_GUARD]
+      },
+      { path: 'collection/:id', component: RecipeCollectionComponent },
+      {
+        path: 'my/:id',
+        component: RecipeDetailComponent,
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+        canActivate: [AUTH_GUARD]
+      },
+      {
+        path: 'my/:id/edit',
+        component: RecipeEditComponent,
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+        canActivate: [AUTH_GUARD]
+      }
     ]
   }
 ];

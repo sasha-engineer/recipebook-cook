@@ -8,6 +8,9 @@ export class Recipe {
     public description: string,
     public imagePath: string,
     public ingredients: Ingredient[],
+    public time?: number,
+    public servings?: number,
+    public shortDescription?: string,
     public uuid?: Guid) {
   }
 }

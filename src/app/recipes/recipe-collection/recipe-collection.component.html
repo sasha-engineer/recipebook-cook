@@ -1,0 +1,97 @@
+<div class="recipe-collection-details" *ngIf="recipe">
+  <div class="row">
+    <div class="col-xs-12 div-img">
+      <img [src]="recipe.imagePath" class="img-responsive fit-img">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 ">
+      <div class="recipe-info-header">
+        <div class="text-center">
+          <h1 class="header-name">{{ recipe.name }}</h1>
+        </div>
+      </div>
+      <div class="recipe-info-section">
+        <div class="recipe-info-section-content">
+          <div class="recipe-info-item">
+            <div class="recipe-info-item-content-top">Active time</div>
+            <div class="recipe-info-item-content-bottom">{{recipe.time}} min</div>
+          </div>
+          <div class="recipe-info-item-end">
+            <div class="recipe-info-item-content-top">Servings</div>
+            <div class="recipe-info-item-content-bottom">{{recipe.servings}} min</div>
+          </div>
+        </div>
+      </div>
+      <p class="recipe-short-description-section"> {{recipe.shortDescription}} </p>
+
+      <div class="bookmark-recipe-section">
+        <div class="bookmark-recipe-section-content">
+          <svg *ngIf="!isRecipeSaved" width="24" height="24" viewBox="0 0 24 24" fill="#343538"
+            xmlns="http://www.w3.org/2000/svg" tabindex="0" size="24" aria-label="save recipe" aria-pressed="false"
+            role="button" class="bookmark-recipe-icon" (click)="onSaveRecipe()">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M7 4.5v14.117c0 .254 0 .465.002.644.16-.078.35-.173.577-.287l2.811-1.405.051-.026c.187-.095.573-.292 1.006-.373a3 3 0 0 1 1.106 0c.433.08.82.278 1.006.373l.051.026 2.811 1.405c.228.114.417.209.577.287.002-.179.002-.39.002-.644V4.5H7ZM5.164 3.32C5 3.639 5 4.059 5 4.9v13.717c0 1.285 0 1.928.27 2.316a1.5 1.5 0 0 0 1.01.624c.468.069 1.043-.219 2.193-.794l2.811-1.405c.263-.131.394-.197.532-.223a.998.998 0 0 1 .368 0c.138.026.27.092.532.223l2.81 1.405c1.15.575 1.726.863 2.193.794a1.5 1.5 0 0 0 1.01-.624c.271-.387.271-1.03.271-2.316V4.9c0-.84 0-1.26-.163-1.581a1.5 1.5 0 0 0-.656-.656c-.32-.163-.74-.163-1.581-.163H7.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656Z"
+              fill="#72767E">
+            </path>
+          </svg>
+
+          <svg *ngIf="isRecipeSaved" width="24" height="24" viewBox="0 0 24 24" fill="#0AAD0A"
+            xmlns="http://www.w3.org/2000/svg" tabindex="0" size="24" color="brandPrimaryRegular"
+            aria-label="unsave recipe" aria-pressed="true" role="button" class="css-s4owcd-SaveRecipeIcon"
+            (click)="onSaveRecipe()">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M5 4.9c0-.84 0-1.26.163-1.581a1.5 1.5 0 0 1 .656-.656c.32-.163.74-.163 1.581-.163h9.2c.84 0 1.26 0 1.581.163a1.5 1.5 0 0 1 .655.656c.164.32.164.74.164 1.581v13.717c0 1.285 0 1.928-.27 2.316a1.5 1.5 0 0 1-1.01.624c-.468.069-1.043-.219-2.193-.794L12 19l-3.527 1.763c-1.15.575-1.725.863-2.192.794a1.5 1.5 0 0 1-1.01-.624C5 20.546 5 19.903 5 18.617V4.9Z">
+            </path>
+          </svg>
+
+        </div>
+        <div role="button" tabindex="0" class="bookmark-recipe-section-save" (click)="onSaveRecipe()">
+          {{ isRecipeSaved ? 'Saved' : 'Save recipe'}}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="ingredient-section">
+        <div>
+          <h2 class="ingredient-title">Ingredients</h2>
+        </div>
+        <button class="btn btn-outline-success btn-sm ingredient-add-cart" (click)="onAddToCart()">
+          Add {{getAmountSelectedItems()}} items to cart
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-check ingredient-item" *ngFor="let item of recipe.ingredients">
+        <label class="form-check-label">
+          <input type="checkbox" [(ngModel)]="item.addToCart" style="cursor: pointer;">
+          {{ item.name }} ( {{item.amount }})
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="recipe-instructions-section">
+        <h2 class="recipe-instructions-title">Instructions</h2>
+
+        <div class="recipe-instructions-list">
+          <div class="recipe-instructions-list-col">
+            <div class="instruction-step" *ngFor="let instructionStep of recipe.instructions; let i = index">
+              <div class="instruction-step-section-number" ngClass="{{i % 2 === 0 ? '': 'step-number-odd' }}">
+                <div class="instruction-step-number">{{i+1}}</div>
+              </div>
+              <div class="instruction-step-text">{{instructionStep}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
