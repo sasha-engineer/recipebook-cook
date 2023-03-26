@@ -54,9 +54,10 @@ export class ShoppingListService {
   }
 
   addIngredients(newIngredients: Ingredient[]) {
-    // TODO: add validation of existing items in the list
-    this.ingredients.push(...newIngredients);
-    this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.ADD_INGREDIENTS));
+    const updated = this.addIngredientWithoutDuplication(newIngredients);
+    if (updated) {
+      this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.ADD_INGREDIENTS));
+    }
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {
@@ -67,5 +68,34 @@ export class ShoppingListService {
   deleteIngredient(index: number) {
     this.ingredients.splice(index, 1);
     this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.DELETE_INGREDIENT));
+  }
+
+  private addIngredientWithoutDuplication(data: Ingredient[]) {
+    let elementsToAdd: Ingredient[] = [];
+
+    data.forEach((value): void => {
+      let isIngredientNew = true;
+
+      for (let i = 0; i < this.ingredients.length - 1; i++) {
+        if (this.ingredients[i].name.toUpperCase() === value.name.toUpperCase()) {
+          this.ingredients[i].amount = this.ingredients[i].amount + value.amount;
+
+          isIngredientNew = false;
+          break;
+        }
+      }
+
+      if (isIngredientNew) {
+        elementsToAdd.push(value);
+      }
+    });
+
+    if (elementsToAdd.length > 0) {
+      this.ingredients.push(...elementsToAdd);
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

@@ -84,7 +84,7 @@
         <div class="recipe-instructions-list">
           <div class="recipe-instructions-list-col">
             <div class="instruction-step" *ngFor="let instructionStep of recipe.instructions; let i = index">
-              <div class="instruction-step-section-number" ngClass="{{i % 2 === 0 ? '': 'step-number-odd' }}">
+              <div class="instruction-step-section-number">
                 <div class="instruction-step-number">{{i+1}}</div>
               </div>
               <div class="instruction-step-text">{{instructionStep}}</div>

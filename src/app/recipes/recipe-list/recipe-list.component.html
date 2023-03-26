@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-xs-12">
-    <h4 class="header-title">My Recipes</h4>
+    <div class="header-title-section">
+      <span class="header-title">Your Recipes</span>
+    </div>
   </div>
 </div>
 <div class="row">
@@ -13,7 +15,7 @@
 <hr>
 <div class="row">
   <div class="col-xs-12 list-group">
-    <app-recipe-item [routerLink]="['/recipes/my', item.id]" *ngFor="let item of recipes" [recipeItem]="item">
+    <app-recipe-item [routerLink]="['/recipes/your', item.id]" *ngFor="let item of recipes" [recipeItem]="item">
     </app-recipe-item>
   </div>
 </div>

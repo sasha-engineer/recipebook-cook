@@ -5,14 +5,21 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HomeComponent } from './home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomeComponent,
+    data: { breadcrumb: { label: 'Home' } }
+  },
   {
     path: 'recipes',
-    loadChildren: () => import("./recipes/recipes.module").then(m => m.RecipesModule)
+    loadChildren: () => import("./recipes/recipes.module").then(m => m.RecipesModule),
+    data: { breadcrumb: { label: 'Recipes' } }
   },
   {
     path: "shopping-list",
-    loadChildren: () => import("./shopping-list/shopping-list.module").then(m => m.ShoppingListModule)
+    loadChildren: () => import("./shopping-list/shopping-list.module").then(m => m.ShoppingListModule),
+    data: { breadcrumb: { label: 'Shopping List' } }
   },
   {
     path: "auth",
@@ -22,6 +29,7 @@ const appRoutes: Routes = [
     path: 'audit',
     loadChildren: () => import("./audit/audit.module").then(m => m.AuditModule)
   },
+
   { path: 'not-found', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/not-found' }
 ];

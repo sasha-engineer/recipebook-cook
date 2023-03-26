@@ -65,6 +65,10 @@ export class RecipeEditComponent implements OnInit {
       );
   }
 
+  onAddStep(){
+   // TODO: add step
+  }
+
   onDeleteIngredient(index: number) {
     // this.recipeService.deleteRecipe(index);
     (this.recipeForm.get('ingredients') as FormArray).removeAt(index);

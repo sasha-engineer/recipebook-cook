@@ -1,3 +1,4 @@
+import { ShoppingListService } from './../../shopping-list/shopping-list.service';
 import { Guid } from 'guid-typescript';
 import { Recipe } from './../recipe.model';
 import { Component } from '@angular/core';
@@ -11,7 +12,7 @@ export class RecipeTop extends Recipe {
     public name: string,
     public description: string,
     public imagePath: string,
-    public ingredients: Ingredient[],
+    public ingredients: IngredientCollection[],
     public time?: number,
     public servings?: number,
     public shortDescription?: string,
@@ -22,12 +23,26 @@ export class RecipeTop extends Recipe {
       name,
       description,
       imagePath,
-      ingredients,
+      mapDataToIngredient(ingredients),
       time,
       servings,
       shortDescription
     );
   }
+}
+
+export class IngredientCollection extends Ingredient {
+  constructor(
+    public name: string,
+    public amount: number,
+    public addToCart?: boolean
+  ) {
+    super(name, amount);
+  }
+}
+
+const mapDataToIngredient = (data: IngredientCollection[]) => {
+  return data.map(item => new Ingredient(item.name, item.amount));
 }
 
 @Component({
@@ -53,15 +68,15 @@ export class RecipeCollectionComponent {
       'Description here is deprecated',
       './assets/top/borscht.jpg',
       [
-        new Ingredient('Water', 2),
-        new Ingredient('Potatoes', 4),
-        new Ingredient('Beets', 2),
-        new Ingredient('Carrot', 1, true),
-        new Ingredient('Onion', 3, true),
-        new Ingredient('Fresh white cabbage', 300),
-        new Ingredient('Tomato paste', 2, true),
-        new Ingredient('Sunflower oil', 4),
-        new Ingredient('Citric acid', 1, true)
+        new IngredientCollection('Water', 2),
+        new IngredientCollection('Potatoes', 4),
+        new IngredientCollection('Beets', 2),
+        new IngredientCollection('Carrot', 1, true),
+        new IngredientCollection('Onion', 3, true),
+        new IngredientCollection('Fresh white cabbage', 300),
+        new IngredientCollection('Tomato paste', 2, true),
+        new IngredientCollection('Sunflower oil', 4),
+        new IngredientCollection('Citric acid', 1, true)
       ],
       21,
       4,
@@ -79,15 +94,15 @@ export class RecipeCollectionComponent {
       'Description here is deprecated',
       './assets/top/varenyky.jpg',
       [
-        new Ingredient('Flour', 3, true),
-        new Ingredient('Sour milk', 300, true),
-        new Ingredient('Egg', 1, true),
-        new Ingredient('A pinch of salt', 1, true),
-        new Ingredient('Sugar', 1, true),
-        new Ingredient('Soda', 1),
-        new Ingredient('Potatoes', 500, true),
-        new Ingredient('Onion', 100),
-        new Ingredient('Oil', 3, true)
+        new IngredientCollection('Flour', 3, true),
+        new IngredientCollection('Sour milk', 300, true),
+        new IngredientCollection('Egg', 1, true),
+        new IngredientCollection('A pinch of salt', 1, true),
+        new IngredientCollection('Sugar', 1, true),
+        new IngredientCollection('Soda', 1),
+        new IngredientCollection('Potatoes', 500, true),
+        new IngredientCollection('Onion', 100),
+        new IngredientCollection('Oil', 3, true)
       ],
       35,
       5,
@@ -95,7 +110,9 @@ export class RecipeCollectionComponent {
     )
   ];
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+    private route: ActivatedRoute,
+    private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
     this.route.params
@@ -120,6 +137,7 @@ export class RecipeCollectionComponent {
   }
 
   onAddToCart() {
-    console.log("length = " + this.recipe.ingredients.filter(r => r.addToCart).length);
+    const ingredientsToSave = this.recipe.ingredients.filter(r => r.addToCart);
+    this.shoppingListService.addIngredients(mapDataToIngredient(ingredientsToSave));
   }
 }

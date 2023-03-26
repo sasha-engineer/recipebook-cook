@@ -9,7 +9,7 @@ import { RecipeService } from '../recipe.service';
   templateUrl: './recipe-detail.component.html',
   styleUrls: ['./recipe-detail.component.css']
 })
-export class RecipeDetailComponent implements OnInit{
+export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
 
   constructor(
@@ -24,24 +24,24 @@ export class RecipeDetailComponent implements OnInit{
         (params: Params) => {
           this.recipe = this.recipeService.getRecipe(params['id']);
         }
-    );
+      );
   }
 
-  onAddToShoppingList(){
+  onAddToShoppingList() {
     this.shoppingListService.addIngredients(this.recipe.ingredients);
   }
 
   onEditRecipe() {
-    this.router.navigate(['edit'], {relativeTo: this.route});
+    this.router.navigate(['edit'], { relativeTo: this.route });
     // this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
   }
 
-  onDeleteRecipe(){
+  onDeleteRecipe() {
     this.recipeService.deleteRecipeById(this.recipe.id);
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  onBackToRecipes(){
-    this.router.navigate(['../../'], {relativeTo: this.route});
+  onBackToRecipes() {
+    this.router.navigate(['../../'], { relativeTo: this.route });
   }
 }

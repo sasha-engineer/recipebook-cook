@@ -14,6 +14,7 @@ import { CoreModule } from './core.module';
 import { HomeComponent } from './home/home.component';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
+import { BreadcrumbModule } from 'xng-breadcrumb';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AuthEffects } from './auth/store/auth.effects';
     StoreModule.forRoot(fromApp.appReducer),
     EffectsModule.forRoot([AuthEffects]),
     SharedModule,
-    CoreModule
+    CoreModule,
+    BreadcrumbModule
   ],
   bootstrap: [AppComponent]
 })

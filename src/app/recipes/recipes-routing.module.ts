@@ -16,25 +16,35 @@ const appRoutes: Routes = [
     component: RecipesComponent,
     children: [
       {
-        path: '', component: RecipeListComponent,
+        path: '',
+        component: RecipeListComponent,
         resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
         canActivate: [AUTH_GUARD]
       },
       {
-        path: 'new', component: RecipeEditComponent,
-        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
-        canActivate: [AUTH_GUARD]
-      },
-      { path: 'collection/:id', component: RecipeCollectionComponent },
-      {
-        path: 'my/:id',
-        component: RecipeDetailComponent,
-        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
-        canActivate: [AUTH_GUARD]
-      },
-      {
-        path: 'my/:id/edit',
+        path: 'new',
         component: RecipeEditComponent,
+        data: { breadcrumb: { label: 'New Recipe' } },
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+        canActivate: [AUTH_GUARD]
+      },
+      {
+        path: 'collection/:id',     
+        component: RecipeCollectionComponent,
+        data: { breadcrumb: { label: 'View Collection Recipe' } },
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER]
+      },
+      {
+        path: 'your/:id',
+        component: RecipeDetailComponent,
+        data: { breadcrumb: { label: 'Your Recipe' } },
+        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
+        canActivate: [AUTH_GUARD]
+      },
+      {
+        path: 'your/:id/edit',
+        component: RecipeEditComponent,
+        data: { breadcrumb: { label: 'Edit Recipe' } },
         resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER],
         canActivate: [AUTH_GUARD]
       }

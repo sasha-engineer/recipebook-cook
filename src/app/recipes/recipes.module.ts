@@ -29,4 +29,4 @@ import { RecipeCollectionComponent } from './recipe-collection/recipe-collection
     SharedModule
   ]
 })
-export class RecipesModule {}
+export class RecipesModule { }

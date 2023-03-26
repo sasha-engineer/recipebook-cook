@@ -1,7 +1,17 @@
 <div class="container">
   <div class="row justify-content-center align-items-center">
     <div class="col-md-6">
-      <span class="header-title">Buy Ingredients</span>
+      <xng-breadcrumb [separator]="iconTemplate"></xng-breadcrumb>
+      <ng-template #iconTemplate>
+        <mat-icon>/</mat-icon>
+      </ng-template>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center">
+    <div class="col-md-6">
+      <div class="header-title-section">
+        <span class="header-title">Buy Ingredients</span>
+      </div>
     </div>
   </div>
   <app-shopping-edit></app-shopping-edit>

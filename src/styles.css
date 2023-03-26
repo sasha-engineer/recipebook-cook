@@ -20,3 +20,12 @@ div>label.form-control {
   font-size: 26px;
   font-weight: 600;
 }
+
+.header-title-section {
+  margin: 15px 0 10px;
+}
+
+xng-breadcrumb {
+  font-size: 12px;
+  line-height: 18px;
+}
