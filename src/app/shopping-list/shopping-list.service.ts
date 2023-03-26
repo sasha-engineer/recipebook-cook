@@ -13,18 +13,18 @@ const defaultIngredients: Ingredient[] = [
 export class ShoppingListService {
   ingredientChanged = new Subject<IngredientChanged>();
   startedEditing = new Subject<number>();
-  private ingredients: Ingredient[] = defaultIngredients.slice();
+  private ingredients: Ingredient[] = defaultIngredients;
   isDefaultIngredients: boolean = true;
 
   setIngredients(data: Ingredient[]): void {
     this.isDefaultIngredients = false;
-    this.ingredients = data ?? defaultIngredients.slice();
+    this.ingredients = data ?? defaultIngredients;
     this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.SET_INGREDIENT));
   }
 
   setDefaultIngredients() {
     this.isDefaultIngredients = true;
-    this.ingredients = defaultIngredients.slice();
+    this.ingredients = defaultIngredients;
     this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.SET_DEFAULT_INGREDIENT));
   }
 
@@ -54,10 +54,8 @@ export class ShoppingListService {
   }
 
   addIngredients(newIngredients: Ingredient[]) {
-    const updated = this.addIngredientWithoutDuplication(newIngredients);
-    if (updated) {
-      this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.ADD_INGREDIENTS));
-    }
+    this.addIngredientWithoutDuplication(newIngredients);
+    this.ingredientChanged.next(new IngredientChanged(this.ingredients.slice(), AuditAction.ADD_INGREDIENTS));
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {
@@ -92,10 +90,6 @@ export class ShoppingListService {
 
     if (elementsToAdd.length > 0) {
       this.ingredients.push(...elementsToAdd);
-      return true;
-    }
-    else {
-      return false;
     }
   }
 }

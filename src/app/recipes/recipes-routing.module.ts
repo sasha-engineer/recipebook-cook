@@ -29,10 +29,9 @@ const appRoutes: Routes = [
         canActivate: [AUTH_GUARD]
       },
       {
-        path: 'collection/:id',     
+        path: 'collection/:id',
         component: RecipeCollectionComponent,
-        data: { breadcrumb: { label: 'View Collection Recipe' } },
-        resolve: [RECIPE_RESOLVER, SHOPPING_LIST_RESOLVER]
+        data: { breadcrumb: { label: 'View Collection Recipe' } }
       },
       {
         path: 'your/:id',

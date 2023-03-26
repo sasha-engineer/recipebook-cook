@@ -102,16 +102,18 @@ export class DataStorageService implements OnDestroy {
   }
 
   saveIngredients() {
-    const data = this.shoppingListService.getIngredients();
-    const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_DOCUMENT;
+    if (this.userId) {
+      const data = this.shoppingListService.getIngredients();
+      const url = DATABASE_URL + this.userId + '-' + INGREDIENTS_DOCUMENT;
 
-    this.httpClient
-      .put(url, data)
-      .subscribe(response => {
-        if (!environment.production) {
-          console.log(response);
-        }
-      });
+      this.httpClient
+        .put(url, data)
+        .subscribe(response => {
+          if (!environment.production) {
+            console.log(response);
+          }
+        });
+    }
   }
 
   getIngredients() {

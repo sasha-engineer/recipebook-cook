@@ -3,6 +3,7 @@ import { Recipe } from './../recipe.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { RecipeService } from '../recipe.service';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-recipe-detail',
@@ -13,6 +14,7 @@ export class RecipeDetailComponent implements OnInit {
   recipe: Recipe;
 
   constructor(
+    private dataStorageService: DataStorageService,
     private shoppingListService: ShoppingListService,
     private recipeService: RecipeService,
     private route: ActivatedRoute,
@@ -29,6 +31,8 @@ export class RecipeDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.shoppingListService.addIngredients(this.recipe.ingredients);
+    this.dataStorageService.saveIngredients();
+    this.router.navigate(['../../../shopping-list'], { relativeTo: this.route });
   }
 
   onEditRecipe() {
@@ -39,9 +43,5 @@ export class RecipeDetailComponent implements OnInit {
   onDeleteRecipe() {
     this.recipeService.deleteRecipeById(this.recipe.id);
     this.router.navigate(['../'], { relativeTo: this.route });
-  }
-
-  onBackToRecipes() {
-    this.router.navigate(['../../'], { relativeTo: this.route });
   }
 }

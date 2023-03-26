@@ -3,7 +3,8 @@ import { Guid } from 'guid-typescript';
 import { Recipe } from './../recipe.model';
 import { Component } from '@angular/core';
 import { Ingredient } from 'src/app/shared/ingredient.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 export class RecipeTop extends Recipe {
   constructor(
@@ -112,7 +113,9 @@ export class RecipeCollectionComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private shoppingListService: ShoppingListService) { }
+    private router: Router,
+    private shoppingListService: ShoppingListService,
+    private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.route.params
@@ -139,5 +142,8 @@ export class RecipeCollectionComponent {
   onAddToCart() {
     const ingredientsToSave = this.recipe.ingredients.filter(r => r.addToCart);
     this.shoppingListService.addIngredients(mapDataToIngredient(ingredientsToSave));
+    this.dataStorageService.saveIngredients();
+
+    this.router.navigate(['../../../shopping-list'], { relativeTo: this.route });
   }
 }
