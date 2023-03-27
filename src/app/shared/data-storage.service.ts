@@ -14,6 +14,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 import * as fromApp from '../store/app.reducer';
 import { AuditData } from './audit-data.model';
+import { ToastService } from './toast/toast.service';
 
 const DATABASE_URL: string = "https://recipe-book-fb4dc-default-rtdb.firebaseio.com/";
 const RECIPES_DOCUMENT: string = 'recipes.json';
@@ -40,7 +41,8 @@ export class DataStorageService implements OnDestroy {
     private recipeService: RecipeService,
     private shoppingListService: ShoppingListService,
     private store: Store<fromApp.AppState>,
-    private auditService: AuditService
+    private auditService: AuditService,
+    private toastService: ToastService
   ) {
     this.userAuthSubscription =
       this.store
@@ -112,7 +114,11 @@ export class DataStorageService implements OnDestroy {
           if (!environment.production) {
             console.log(response);
           }
+          this.showToasterSuccess('Ingredients was inserted');
         });
+    }
+    else{
+      this.showToasterSuccess('Ingredients was added to Cart');
     }
   }
 
@@ -167,5 +173,29 @@ export class DataStorageService implements OnDestroy {
         }),
         tap(data => this.auditService.setData(data))
       );
+  }
+
+  showToasterSuccess(message: string) {
+    this.toastService.show(message, {
+      classname: 'bg-success text-light',
+      delay: 5000,
+      autohide: true
+    });
+  }
+
+  showToasterDanger(message: string) {
+    this.toastService.show(message, {
+      classname: 'bg-danger text-light',
+      delay: 5000,
+      autohide: true
+    });
+  }
+
+  showToasterInfo(message: string) {
+    this.toastService.show(message, {
+      classname: 'bg-info text-light',
+      delay: 5000,
+      autohide: true
+    });
   }
 }

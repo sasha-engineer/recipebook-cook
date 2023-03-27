@@ -1,3 +1,4 @@
+import { ToastsContainer } from './shared/toast/toasts-container.component';
 import { FooterComponent } from './footer/footer.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -15,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import * as fromApp from './store/app.reducer';
 import { AuthEffects } from './auth/store/auth.effects';
 import { BreadcrumbModule } from 'xng-breadcrumb';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
     EffectsModule.forRoot([AuthEffects]),
     SharedModule,
     CoreModule,
-    BreadcrumbModule
+    BreadcrumbModule,
+    NgbModule,
+    ToastsContainer
   ],
   bootstrap: [AppComponent]
 })

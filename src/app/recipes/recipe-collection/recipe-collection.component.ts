@@ -143,7 +143,5 @@ export class RecipeCollectionComponent {
     const ingredientsToSave = this.recipe.ingredients.filter(r => r.addToCart);
     this.shoppingListService.addIngredients(mapDataToIngredient(ingredientsToSave));
     this.dataStorageService.saveIngredients();
-
-    this.router.navigate(['../../../shopping-list'], { relativeTo: this.route });
   }
 }
