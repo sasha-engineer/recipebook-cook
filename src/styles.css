@@ -29,3 +29,10 @@ xng-breadcrumb {
   font-size: 12px;
   line-height: 18px;
 }
+
+a.xng-breadcrumb-link{
+  color: rgb(9, 105, 218);
+  display: inline-block;
+  font-size: 12px;
+  text-decoration: none;
+}
