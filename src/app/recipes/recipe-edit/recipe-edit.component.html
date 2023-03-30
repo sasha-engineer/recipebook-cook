@@ -1,12 +1,5 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="header-title-section">
-      <span class="header-title">{{editMode ? 'Update Recipe' : 'Add New Recipe'}}</span>
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
     <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
       <div class="col-md-12">
         <div class="form-group mb-3" style="justify-content: flex-end; display: flex;">
@@ -42,17 +35,53 @@
       <div class="row">
         <div class="col-md-12 ">
           <div class="form-floating form-group mb-3">
-            <textarea type="text" id="description" class="form-control" style="height: 100px" rows="6"
+            <textarea type="text" id="description" class="form-control" style="height: 70px" rows="3"
               formControlName="description" placeholder="description"></textarea>
-            <label for="description">Description</label>
+            <label for="description">Short Description</label>
           </div>
         </div>
-        <div class="form-group">
-          <button class="btn btn-outline-success" type="button" (click)="onAddStep()">Add Step</button>
+      </div>
+
+      <hr>
+      <div class="row">
+        <div class="col-md-12" formArrayName="instructions">
+          <div class="recipe-section">
+            <div>
+              <h3 class="recipe-title">Instructions</h3>
+            </div>
+          </div>
+
+          <div class="steps steps-vertical">
+            <ol>
+              <li class="steps-ongoing steps-selected"
+                *ngFor="let instructionCtrl of instructionControls; let i = index"
+                [formGroupName]="i">
+                <div class="steps-number">{{i+1}}</div>
+                <div class="instruction-step-text">
+                  <textarea type="text" class="form-control" style="margin-bottom:15px; height: 100px" rows="7"
+                    formControlName="step" placeholder="Step #{{i+1}}">
+                  </textarea>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="form-group">
+            <button class="btn btn-outline-success" type="button" [disabled]="!recipeForm.valid" (click)="onAddStep()">
+              + Step</button>
+            <button class="btn btn-outline-danger" type="button" [disabled]="recipeForm.value.instructions.length === 0" (click)="onDeleteStep()">- Step</button>
+          </div>
         </div>
       </div>
+
+      <hr>
       <div class="row">
         <div class="col-md-12" formArrayName="ingredients">
+          <div class="ingredient-section">
+            <div>
+              <h3 class="ingredient-title">Ingredients</h3>
+            </div>
+          </div>
           <div class="row" *ngFor="let ingredientCtrl of ingredientControls; let i = index" [formGroupName]="i">
             <div class="input-group form-group">
               <input type="text" class="form-control" formControlName="name" placeholder="Ingredient name">
@@ -65,7 +94,8 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <button class="btn btn-outline-success" type="button" (click)="onAddIngredient()">Add Ingredient</button>
+            <button class="btn btn-outline-success" type="button" [disabled]="!recipeForm.valid"
+              (click)="onAddIngredient()">+ Ingredient</button>
           </div>
         </div>
       </div>

@@ -32,7 +32,6 @@ export class RecipeDetailComponent implements OnInit {
   onAddToShoppingList() {
     this.shoppingListService.addIngredients(this.recipe.ingredients);
     this.dataStorageService.saveIngredients();
-    this.router.navigate(['../../../shopping-list'], { relativeTo: this.route });
   }
 
   onEditRecipe() {
@@ -42,6 +41,7 @@ export class RecipeDetailComponent implements OnInit {
 
   onDeleteRecipe() {
     this.recipeService.deleteRecipeById(this.recipe.id);
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.dataStorageService.saveRecipes();
+    this.router.navigate(['../../'], { relativeTo: this.route });
   }
 }

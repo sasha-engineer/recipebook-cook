@@ -17,3 +17,22 @@ div>button {
   margin-top: 1.5rem;
   max-height: 200px;
 }
+
+.ingredient-title {
+  color: #ea8b0f;
+  margin: 1rem 0 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .ingredient-section {
+    margin: 16px auto;
+  }
+}
+
+.ingredient-section {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: 10px 0 10px;
+  padding: 0 8px;
+}

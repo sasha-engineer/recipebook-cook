@@ -8,4 +8,8 @@ import { Component, Input } from '@angular/core';
 })
 export class RecipeItemComponent {
   @Input() recipeItem: Recipe;
+
+  isRecipeSaved() {
+    return this.recipeItem.refRecipeId !== undefined;
+  }
 }

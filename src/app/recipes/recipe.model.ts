@@ -1,6 +1,10 @@
 import { Guid } from 'guid-typescript';
 import { Ingredient } from './../shared/ingredient.model';
 
+export class Step {
+  constructor(public step: string) { }
+}
+
 export class Recipe {
   constructor(
     public id: string,
@@ -11,6 +15,8 @@ export class Recipe {
     public time?: number,
     public servings?: number,
     public shortDescription?: string,
-    public uuid?: Guid) {
+    public uuid?: Guid,
+    public refRecipeId?: string,
+    public instructions?: Step[]) {
   }
 }

@@ -36,3 +36,333 @@ a.xng-breadcrumb-link{
   font-size: 12px;
   text-decoration: none;
 }
+
+
+.recipe-title {
+  color: #ea8b0f;
+  margin: 1rem 0 1rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .recipe-section {
+    margin: 16px auto;
+  }
+}
+
+.recipe-section {
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin: 10px 0 10px;
+  padding: 0 8px;
+}
+
+
+/** Steps **/
+
+.steps ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* background-color: #fff; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between
+}
+
+.steps ol li {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 1 100%;
+  flex: 0 1 100%;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  position: relative;
+  padding: 4.25rem 0 0;
+  text-align: center;
+  line-height: 1rem;
+  overflow: hidden;
+  height: 0;
+  color: #767676
+}
+
+.steps ol li>a {
+  display: block;
+  width: 100%;
+  padding: 4.25rem 0 0;
+  color: #383737;
+  border: 0;
+  cursor: pointer;
+  margin: -4.25rem 0 0
+}
+
+.steps ol li>a:hover .steps-number {
+  border-radius: 50%;
+  background-color: #fdc129
+}
+
+.steps ol li>a:before {
+  border-radius: 50%;
+  border: 2px solid #fdc129
+}
+
+.steps ol li:before,
+.steps ol li>a:before {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  margin-top: -15px;
+  left: 50%;
+  margin-left: -15px;
+  content: "";
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  z-index: 10
+}
+
+.steps ol li:before {
+  border-radius: 50%;
+  border: 2px solid #ebe7e2;
+  background-color: #fff
+}
+
+.steps ol li .steps-icon {
+  color: #512b2b;
+  font-size: 1.1rem
+}
+
+.steps ol li .steps-icon,
+.steps ol li .steps-number {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  margin-top: -15px;
+  left: 50%;
+  margin-left: -15px;
+  z-index: 15;
+  line-height: 30px;
+  text-align: center
+}
+
+.steps ol li .steps-number {
+  font-family: Swedbank Headline, Arial, sans-serif;
+  font-size: 1rem
+}
+
+.steps ol li:after {
+  content: "";
+  position: absolute;
+  background-color: #ebe7e2;
+  z-index: 5;
+  height: 2px;
+  width: 102%;
+  left: 0;
+  top: 50%;
+  margin-top: -1px
+}
+
+.steps ol li:first-child:after {
+  right: 0;
+  left: auto;
+  width: 50%
+}
+
+.steps ol li:last-child:after {
+  width: 50%
+}
+
+.steps ol .steps-completed {
+  color: #512b2b
+}
+
+.steps ol .steps-completed:before {
+  border-color: #fdc129;
+  background-color: #fdc129
+}
+
+.steps ol .steps-completed:after {
+  background-color: #fdc129
+}
+
+.steps ol .steps-completed a,
+.steps ol .steps-ongoing {
+  color: #512b2b
+}
+
+.steps ol .steps-ongoing:before {
+  border-color: #fdc129
+}
+
+.steps ol .steps-ongoing:after {
+  background: -webkit-gradient(linear, left top, right top, color-stop(50%, #fdc129), color-stop(50%, #ebe7e2));
+  background: -o-linear-gradient(left, #fdc129 50%, #ebe7e2 50%);
+  background: linear-gradient(90deg, #fdc129 50%, #ebe7e2 0)
+}
+
+.steps ol .steps-ongoing:first-child:after,
+.steps ol .steps-ongoing:last-child:after {
+  background: -webkit-gradient(linear, left top, right top, to(#fdc129));
+  background: -o-linear-gradient(left, #fdc129 100%);
+  background: linear-gradient(90deg, #fdc129)
+}
+
+.steps ol .steps-ongoing a {
+  color: rgb(21, 21, 21);
+}
+
+.steps ol .steps-selected {
+  color: rgb(21, 21, 21);
+}
+
+.steps ol .steps-selected .steps-number,
+.steps ol .steps-selected a {
+  color: rgb(21, 21, 21);
+}
+
+.steps ol .steps-sub-title {
+  line-height: 1rem;
+  margin-top: .25rem;
+  font-size: .875rem;
+  color: #767676
+}
+
+.steps-responsive {
+  width: 100%;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: .25rem .5rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex
+}
+
+.steps-responsive-text {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  text-align: center
+}
+
+/* @media screen and (min-width: 576px) { */
+.steps-responsive {
+  display: none
+}
+
+.steps ol {
+  font-size: 1.1rem
+}
+
+.steps ol li {
+  padding: 4.25rem 0 1.2rem;
+  height: auto
+}
+
+.steps ol li>a {
+  padding: 4.25rem 0 1.2rem;
+  margin: -4.25rem 0 -1.2rem
+}
+
+.steps ol li .steps-icon,
+.steps ol li .steps-number,
+.steps ol li:before,
+.steps ol li>a:before {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin-left: -20px;
+  top: 2.125rem;
+  margin-top: -20px;
+  border-width: 2px
+}
+
+.steps ol li .steps-icon,
+.steps ol li:before {
+  font-size: 1.5rem
+}
+
+.steps ol li .steps-number {
+  font-size: 1.25rem
+}
+
+.steps ol li:after {
+  top: 2.125rem;
+  margin-top: -1px;
+  height: 2px
+}
+
+.steps ol .steps-sub-title {
+  margin-top: .5rem
+}
+
+.steps-vertical ol {
+  display: block
+}
+
+.steps-vertical ol li {
+  display: block;
+  text-align: left;
+  padding: 1rem 0 1rem 5.25rem
+}
+
+.steps-vertical ol li>a {
+  padding: 1rem 0 1rem 5.25rem;
+  width: auto;
+  /*      margin: -2rem -1.5rem -2rem -5.25rem */
+}
+
+.steps-vertical ol li .steps-icon,
+.steps-vertical ol li .steps-number,
+.steps-vertical ol li:before {
+  margin-left: 0;
+  left: 1.7rem;
+  top: 50%
+}
+
+.steps-vertical ol li:after {
+  width: 2px;
+  left: 1.7rem;
+  margin-left: 19px;
+  top: 0;
+  bottom: 0;
+  height: auto;
+  margin-top: 0
+}
+
+.steps-vertical ol li:first-child:after {
+  top: auto
+}
+
+.steps-vertical ol li:first-child:after,
+.steps-vertical ol li:last-child:after {
+  height: 50%;
+  width: 2px;
+  left: 1.7rem;
+  margin-left: 19px
+}
+
+.steps-vertical ol .steps-ongoing:after {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #fdc129), color-stop(50%, #ebe7e2));
+  background: -o-linear-gradient(#fdc129 50%, #fdc129 50%);
+  background: linear-gradient(#fdc129 50%, #fdc129 0)
+}
+
+.instruction-step-text {
+  flex: 1 1 0%;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  font-variation-settings: "wght" 0, "opsz" 8;
+  text-align: justify;
+  padding-right: 5px;
+}

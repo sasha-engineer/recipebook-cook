@@ -3,15 +3,32 @@
     <div class="col-sm-12">
       <div class="card-body">
         <div class="d-flex align-items-center">
+          <div *ngIf="isRecipeSaved(); then markRecipeAsSaved">
+          </div>
           <div class="flex-shrink-0">
             <img [src]="recipeItem.imagePath" class="item-img">
           </div>
           <div class="flex-grow-1 ms-3">
             <h5 class="card-title">{{recipeItem.name}}</h5>
-            <p class="card-text">{{recipeItem.description}}</p>
+            <p class="card-text text-ellipsis">{{recipeItem.description !== '' ? recipeItem.description : recipeItem.shortDescription}}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #markRecipeAsSaved>
+  <div style="position: absolute; top: 10px; right: 10px; z-index: 1;">
+    <svg width="24" height="24" viewBox="0 0 24 25" fill="#0AAD0A" xmlns="http://www.w3.org/2000/svg" tabindex="0"
+      size="24" color="brandPrimaryRegular" aria-pressed="true">
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M5.163 3.819C5 4.139 5 4.559 5 5.4v13.717c0 1.285 0 1.928.27 2.316a1.5 1.5 0 0 0 1.01.624c.468.069 1.043-.219 2.193-.794l2.811-1.405c.263-.131.394-.197.532-.223a.998.998 0 0 1 .368 0c.138.026.27.092.532.223l2.81 1.405c1.15.575 1.726.863 2.193.794a1.5 1.5 0 0 0 1.01-.624c.271-.387.271-1.03.271-2.316V5.4c0-.84 0-1.26-.163-1.581a1.5 1.5 0 0 0-.656-.656C17.861 3 17.441 3 16.6 3H7.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656Z">
+      </path>
+      <path fill-rule="evenodd" clip-rule="evenodd"
+        d="M7 5v14.117c0 .254 0 .465.002.644.16-.078.35-.173.577-.287l2.811-1.405.051-.026c.187-.095.573-.292 1.006-.373a3 3 0 0 1 1.106 0c.433.08.82.278 1.006.373l.051.026 2.811 1.405c.228.114.417.209.577.287.002-.179.002-.39.002-.644V5H7ZM5.164 3.82C5 4.139 5 4.559 5 5.4v13.717c0 1.285 0 1.928.27 2.316a1.5 1.5 0 0 0 1.01.624c.468.069 1.043-.219 2.193-.794l2.811-1.405c.263-.131.394-.197.532-.223a.998.998 0 0 1 .368 0c.138.026.27.092.532.223l2.81 1.405c1.15.575 1.726.863 2.193.794a1.5 1.5 0 0 0 1.01-.624c.271-.387.271-1.03.271-2.316V5.4c0-.84 0-1.26-.163-1.581a1.5 1.5 0 0 0-.656-.656C17.861 3 17.441 3 16.6 3H7.4c-.84 0-1.26 0-1.581.163a1.5 1.5 0 0 0-.656.656Z"
+        fill="#fff"></path>
+    </svg>
+  </div>
+</ng-template>

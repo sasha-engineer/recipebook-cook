@@ -70,7 +70,8 @@ export class DataStorageService implements OnDestroy {
       });
   }
 
-  saveRecipes() {
+  saveRecipes(toastMessage?: string) {
+    if (this.userId) {
     const data = this.recipeService.getRecipes();
     const url = DATABASE_URL + this.userId + '-' + RECIPES_DOCUMENT;
 
@@ -80,7 +81,12 @@ export class DataStorageService implements OnDestroy {
         if (!environment.production) {
           console.log(response);
         }
+        this.showToasterSuccess(toastMessage ?? 'Recipes were saved');
       });
+    }
+    else{
+      this.showToasterSuccess(toastMessage ?? 'Recipes were saved');
+    }
   }
 
   getRecipes() {
@@ -114,11 +120,11 @@ export class DataStorageService implements OnDestroy {
           if (!environment.production) {
             console.log(response);
           }
-          this.showToasterSuccess('Ingredients was inserted');
+          this.showToasterSuccess('Ingredients were saved');
         });
     }
     else{
-      this.showToasterSuccess('Ingredients was added to Cart');
+      this.showToasterSuccess('Ingredients were added to Cart');
     }
   }
 

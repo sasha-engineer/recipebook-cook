@@ -38,8 +38,7 @@
 
           <svg *ngIf="isRecipeSaved" width="24" height="24" viewBox="0 0 24 24" fill="#0AAD0A"
             xmlns="http://www.w3.org/2000/svg" tabindex="0" size="24" color="brandPrimaryRegular"
-            aria-label="unsave recipe" aria-pressed="true" role="button" class="css-s4owcd-SaveRecipeIcon"
-            (click)="onSaveRecipe()">
+            aria-label="unsave recipe" aria-pressed="true" role="button">
             <path fill-rule="evenodd" clip-rule="evenodd"
               d="M5 4.9c0-.84 0-1.26.163-1.581a1.5 1.5 0 0 1 .656-.656c.32-.163.74-.163 1.581-.163h9.2c.84 0 1.26 0 1.581.163a1.5 1.5 0 0 1 .655.656c.164.32.164.74.164 1.581v13.717c0 1.285 0 1.928-.27 2.316a1.5 1.5 0 0 1-1.01.624c-.468.069-1.043-.219-2.193-.794L12 19l-3.527 1.763c-1.15.575-1.725.863-2.192.794a1.5 1.5 0 0 1-1.01-.624C5 20.546 5 19.903 5 18.617V4.9Z">
             </path>
@@ -82,9 +81,9 @@
         <h2 class="recipe-instructions-title">Instructions</h2>
         <div class="steps steps-vertical">
           <ol>
-            <li class="steps-ongoing steps-selected" *ngFor="let instructionStep of recipe.instructions; let i = index">
+            <li class="steps-ongoing steps-selected" *ngFor="let instruction of recipe.instructions; let i = index">
               <div class="steps-number">{{i+1}}</div>
-              <div class="instruction-step-text">{{instructionStep}}</div>
+              <div class="instruction-step-text">{{instruction.step}}</div>
             </li>
           </ol>
         </div>
